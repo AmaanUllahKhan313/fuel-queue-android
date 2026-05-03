@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.fuelqueue.ui.login.LoginFragment"
+        android:label="Login">
+        <action
+            android:id="@+id/action_login_to_map"
+            app:destination="@id/mapFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@id/registerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.fuelqueue.ui.login.RegisterFragment"
+        android:label="Register" />
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.fuelqueue.ui.map.MapFragment"
+        android:label="Map">
+        <action
+            android:id="@+id/action_map_to_detail"
+            app:destination="@id/stationDetailFragment" />
+        <action
+            android:id="@+id/action_map_to_list"
+            app:destination="@id/stationListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/stationListFragment"
+        android:name="com.fuelqueue.ui.list.StationListFragment"
+        android:label="Stations">
+        <action
+            android:id="@+id/action_list_to_detail"
+            app:destination="@id/stationDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/stationDetailFragment"
+        android:name="com.fuelqueue.ui.detail.StationDetailFragment"
+        android:label="Station Detail">
+        <argument
+            android:name="stationId"
+            app:argType="long" />
+    </fragment>
+
+</navigation>
