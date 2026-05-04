@@ -10,7 +10,9 @@
 
 **Background Service:** `GpsTrackerService` (foreground) pings backend every 10 seconds with GPS coords. Geofence logic lives server-side (80m radius).
 
-**Session State:** `SessionManager` (Kotlin singleton) wraps SharedPreferences for JWT token + user metadata. Initialized in `FuelQueueApplication.onCreate()`.
+**Authentication:** **Mobile OTP-based** (replaces email-based). Two-step flow: send OTP → verify OTP.
+
+**Session State:** `SessionManager` (Kotlin singleton) wraps SharedPreferences for JWT token + user metadata + mobile number. Initialized in `FuelQueueApplication.onCreate()`.
 
 ---
 
@@ -21,11 +23,12 @@
 | `MainActivity.kt` | Activity host + GPS permission/service control |
 | `data/api/RetrofitClient.kt` | Singleton Retrofit builder w/ JWT interceptor |
 | `data/api/ApiService.kt` | Retrofit interface (auth, stations, GPS ping endpoints) |
-| `data/model/Models.kt` | Data classes for API contracts |
-| `utils/SessionManager.kt` | SharedPreferences wrapper for token + user info |
+| `data/model/Models.kt` | Data classes for API contracts (OTP requests/responses) |
+| `utils/SessionManager.kt` | SharedPreferences wrapper for token + user info + **mobile number** |
 | `utils/CrowdUtils.kt` | When adding crowd-related UI → use these color/emoji/label helpers |
 | `service/GpsTrackerService.kt` | Background GPS tracking (lifecycle: onCreate→startForeground→locationCallback loop) |
-| `ui/login/LoginFragment.kt` | Auth pattern example (lifecycleScope + error handling) |
+| `ui/login/LoginFragment.kt` | **OTP login** pattern (send OTP → verify OTP) |
+| `ui/login/RegisterFragment.kt` | **OTP registration** pattern (send OTP → verify OTP) |
 | `ui/detail/StationDetailFragment.kt` | Auto-refresh pattern (15s loop with job cancellation on pause) |
 
 ---
@@ -96,6 +99,29 @@ lifecycleScope.launch {
 ```
 **Key:** Always use `lifecycleScope.launch` (cancels on destroy), check both `isSuccessful` + `body() != null`.
 
+### OTP-Based Authentication Flow
+```kotlin
+// Step 1: Send OTP to mobile number
+lifecycleScope.launch {
+    val response = RetrofitClient.api.sendLoginOtp(SendOtpRequest(mobileNumber))
+    if (response.isSuccessful && response.body()?.success == true) {
+        otpSent = true
+        updateUI() // Show OTP input field
+    }
+}
+
+// Step 2: Verify OTP
+lifecycleScope.launch {
+    val response = RetrofitClient.api.verifyLoginOtp(VerifyOtpRequest(mobileNumber, otp))
+    if (response.isSuccessful && response.body() != null) {
+        val loginResponse = response.body()!!
+        SessionManager.saveSession(loginResponse.token, loginResponse.userId, 
+                                   loginResponse.name, loginResponse.mobileNumber)
+    }
+}
+```
+**Key:** Two-step flow with state management (`otpSent` flag). Validate mobile (10 digits) + OTP (6 digits) on client.
+
 ### Auto-Refresh Pattern (Detail Screen)
 ```kotlin
 private var refreshJob: Job? = null
@@ -131,11 +157,21 @@ binding.tvAdvice.text = CrowdUtils.getAdvice(crowdLevel)
 
 ## 🔗 Integration Points
 
-### Authentication Flow
-1. User enters email + password → `LoginFragment.doLogin()`
-2. `RetrofitClient.api.login(LoginRequest)` → backend returns JWT
-3. `SessionManager.saveSession(token, userId, name, email)` stores in SharedPreferences
-4. All future requests auto-include `Authorization: Bearer {token}` via OkHttp interceptor
+### Authentication Flow (OTP-based) ⭐ **UPDATED**
+1. **Step 1: Send OTP**
+   - User enters 10-digit mobile number → `LoginFragment.sendOtp()` or `RegisterFragment.sendOtp()`
+   - `RetrofitClient.api.sendLoginOtp(SendOtpRequest)` or `sendRegisterOtp(SendOtpRequest)` → backend sends OTP
+   - UI transitions to OTP input screen (show `et_password` field)
+
+2. **Step 2: Verify OTP**
+   - User enters 6-digit OTP → `LoginFragment.verifyOtp()` or `RegisterFragment.verifyOtp()`
+   - `RetrofitClient.api.verifyLoginOtp(VerifyOtpRequest)` or `verifyRegisterOtp(VerifyOtpRequest)` → backend verifies, returns JWT + user info
+   - `SessionManager.saveSession(token, userId, name, mobileNumber)` stores in SharedPreferences
+   - All future requests auto-include `Authorization: Bearer {token}` via OkHttp interceptor
+
+**Mobile Number Validation:** Must be 10 digits (client validates; backend validates too)
+
+**OTP Validation:** Must be 6 digits (client validates; backend validates too)
 
 ### GPS Tracking Flow
 1. After login, `MainActivity.requestLocationAndStartTracking()` checks permission + starts `GpsTrackerService`
@@ -152,6 +188,22 @@ binding.tvAdvice.text = CrowdUtils.getAdvice(crowdLevel)
 ---
 
 ## ⚠️ Critical Patterns & Gotchas
+
+### Mobile Number + OTP Validation
+```kotlin
+// Mobile number: exactly 10 digits
+if (!mobileNumber.matches(Regex("^[0-9]{10}$"))) {
+    Toast.makeText(context, "Please enter a valid 10-digit mobile number", Toast.LENGTH_SHORT).show()
+    return
+}
+
+// OTP: exactly 6 digits
+if (otp.length != 6) {
+    Toast.makeText(context, "OTP must be 6 digits", Toast.LENGTH_SHORT).show()
+    return
+}
+```
+**Gotcha:** Client-side validation only; backend must validate too.
 
 ### Permission Checks (Before GPS)
 ```kotlin
@@ -179,14 +231,29 @@ val hasPermission = ContextCompat.checkSelfPermission(
 - Physical: `http://[YOUR_LAN_IP]:8080/`
 - Change in `build.gradle` `buildConfigField`, not in code
 
+### SessionManager Mobile Number Access ⭐ **UPDATED**
+```kotlin
+// Old way (deprecated)
+val email = SessionManager.getEmail() // ❌ No longer exists
+
+// New way
+val mobile = SessionManager.getMobileNumber() // ✅ Returns "9876543210"
+```
+
 ---
 
 ## 📊 Data Models
 
+### OTP-Related Models (NEW)
+- **SendOtpRequest:** Mobile number → sent to backend to trigger OTP
+- **VerifyOtpRequest:** Mobile number + OTP → backend verifies & returns JWT
+- **OtpResponse:** Backend response with success flag + message + expiry
+
+### Core Models
 - **Station:** Full station info + distance + crowd level (list/map display)
 - **CrowdStatus:** Live crowd + user count + wait estimate (detail screen refresh)
 - **LocationPing:** User GPS coords + speed → sent every 10s to `/api/gps/ping`
-- **LoginResponse:** Contains JWT token + userId + name (store in SessionManager immediately)
+- **LoginResponse:** Contains JWT token + userId + name + **mobileNumber** (store in SessionManager immediately)
 
 ---
 
@@ -199,6 +266,8 @@ val hasPermission = ContextCompat.checkSelfPermission(
 | Update crowd display | Modify `CrowdUtils.kt` (colors/labels/advice) + UI binding calls |
 | Add API endpoint | Add method to `ApiService` interface + call via `RetrofitClient.api` + handle in `lifecycleScope.launch` |
 | Background sync | Extend `GpsTrackerService` or create new service + permission checks + foreground notification |
+| **Modify auth flow** | **Update both `LoginFragment` + `RegisterFragment` + API endpoints + SessionManager** ⭐ |
+| Store user data | Use `SessionManager.saveSession()` + retrieve via getters (mobile, name, userId, token) |
 
 ---
 
@@ -208,4 +277,12 @@ val hasPermission = ContextCompat.checkSelfPermission(
 - **Java 17 / Kotlin 1.9.22** required
 - **AndroidX + Jetpack** (Navigation, LiveData, Lifecycle, Coroutines)
 - **Data Binding:** Enabled in `buildFeatures`, use `binding.view` not `findViewById()`
+
+---
+
+## 📚 Documentation
+
+For detailed OTP migration guide, see:
+- **`OTP_MIGRATION_GUIDE.md`** — Comprehensive guide with API contracts, testing checklist, and examples
+
 
