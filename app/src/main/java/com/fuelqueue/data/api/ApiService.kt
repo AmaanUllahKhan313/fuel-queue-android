@@ -6,15 +6,15 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    // ── Auth ──────────────────────────────────────────────────────────────────
+    // ── Auth: OTP-based ────────────────────────────────────────────────────────
 
-    @POST("api/auth/register")
-    suspend fun register(@Body request: RegisterRequest): Response<MessageResponse>
+    @POST("api/auth/send-otp")
+    suspend fun sendOtp(@Body request: SendOtpRequest): Response<OtpResponse>
 
-    @POST("api/auth/login")
-    suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
+    @POST("api/auth/verify-otp")
+    suspend fun verifyOtp(@Body request: VerifyOtpRequest): Response<LoginResponse>
 
-    // ── Stations ──────────────────────────────────────────────────────────────
+    // ── Stations ────────────────────────────────────────────────────────────────
 
     @GET("api/stations")
     suspend fun getAllStations(): Response<List<Station>>
@@ -29,7 +29,7 @@ interface ApiService {
     @GET("api/stations/{id}/crowd")
     suspend fun getCrowdStatus(@Path("id") stationId: Long): Response<CrowdStatus>
 
-    // ── GPS ───────────────────────────────────────────────────────────────────
+    // ── GPS ─────────────────────────────────────────────────────────────────────
 
     @POST("api/gps/ping")
     suspend fun sendLocationPing(@Body ping: LocationPing): Response<CrowdStatus?>

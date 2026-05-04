@@ -9,7 +9,7 @@ object SessionManager {
     private const val KEY_TOKEN    = "jwt_token"
     private const val KEY_USER_ID  = "user_id"
     private const val KEY_NAME     = "user_name"
-    private const val KEY_EMAIL    = "user_email"
+    private const val KEY_PHONE   = "user_phone"
 
     private lateinit var prefs: SharedPreferences
 
@@ -17,20 +17,20 @@ object SessionManager {
         prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
     }
 
-    fun saveSession(token: String, userId: Long, name: String, email: String) {
+    fun saveSession(token: String, userId: Long, name: String, phoneNumber: String) {
         prefs.edit()
             .putString(KEY_TOKEN, token)
             .putLong(KEY_USER_ID, userId)
             .putString(KEY_NAME, name)
-            .putString(KEY_EMAIL, email)
+            .putString(KEY_PHONE, phoneNumber)
             .apply()
     }
 
-    fun getToken(): String?  = prefs.getString(KEY_TOKEN, null)
-    fun getUserId(): Long    = prefs.getLong(KEY_USER_ID, -1L)
-    fun getName(): String    = prefs.getString(KEY_NAME, "") ?: ""
-    fun getEmail(): String   = prefs.getString(KEY_EMAIL, "") ?: ""
-    fun isLoggedIn(): Boolean = getToken() != null
+    fun getToken(): String?      = prefs.getString(KEY_TOKEN, null)
+    fun getUserId(): Long        = prefs.getLong(KEY_USER_ID, -1L)
+    fun getName(): String        = prefs.getString(KEY_NAME, "") ?: ""
+    fun getPhoneNumber(): String = prefs.getString(KEY_PHONE, "") ?: ""
+    fun isLoggedIn(): Boolean    = getToken() != null
 
     fun clearSession() {
         prefs.edit().clear().apply()

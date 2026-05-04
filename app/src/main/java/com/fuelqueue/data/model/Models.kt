@@ -29,6 +29,34 @@ data class LocationPing(
     val timestamp: Long = System.currentTimeMillis()
 )
 
+// ── OTP Authentication ──────────────────────────────────────────
+
+data class SendOtpRequest(
+    val phoneNumber: String
+)
+
+data class VerifyOtpRequest(
+    val phoneNumber: String,
+    val otp: String,
+    val name: String? = null  // Optional: for registration
+)
+
+data class OtpResponse(
+    val success: Boolean,
+    val message: String,
+    val phoneNumber: String,
+    val otp: String? = null  // Only present in testing/development
+)
+
+data class LoginResponse(
+    val token: String,
+    val userId: Long,
+    val name: String,
+    val phoneNumber: String
+)
+
+// ── Legacy (deprecated, kept for backward compatibility) ──
+
 data class LoginRequest(
     val email: String,
     val password: String
@@ -37,12 +65,6 @@ data class LoginRequest(
 data class RegisterRequest(
     val email: String,
     val password: String,
-    val name: String
-)
-
-data class LoginResponse(
-    val token: String,
-    val userId: Long,
     val name: String
 )
 

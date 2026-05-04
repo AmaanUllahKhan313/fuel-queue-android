@@ -21,7 +21,13 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.fuelqueue.ui.login.RegisterFragment"
-        android:label="Register" />
+        android:label="Register">
+        <action
+            android:id="@+id/action_register_to_map"
+            app:destination="@id/mapFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/mapFragment"
