@@ -57,9 +57,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNav.setupWithNavController(navController)
 
-        // Request location permission then start GPS if already logged in
+        // If already logged in, request location (but don't start tracking yet — let LoginFragment handle navigation)
+        // LocationFragment will navigate to map after requesting location
         if (SessionManager.isLoggedIn()) {
-            requestLocationAndStartTracking()
+            // Don't call requestLocationAndStartTracking() here to avoid duplicate requests
+            // LoginFragment will handle it during navigation
         }
     }
 

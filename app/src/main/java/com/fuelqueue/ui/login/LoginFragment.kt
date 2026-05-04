@@ -36,9 +36,16 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // If already logged in, skip to map
+        // If already logged in, skip to map automatically
         if (SessionManager.isLoggedIn()) {
-            findNavController().navigate(R.id.action_login_to_map)
+            // Request location and start GPS tracking in background
+            (requireActivity() as MainActivity).requestLocationAndStartTracking()
+            // Navigate to map after a short delay to allow location setup
+            view.postDelayed({
+                if (isAdded) {
+                    findNavController().navigate(R.id.action_login_to_map)
+                }
+            }, 100)
             return
         }
 
