@@ -49,11 +49,9 @@ class LoginFragment : Fragment() {
             return
         }
 
-        binding.btnLogin.setOnClickListener { handleLoginFlow() }
-
-        binding.tvGoToRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_login_to_register)
-        }
+        binding.btnSendOtp.setOnClickListener { sendOtp() }
+        binding.btnVerifyOtp.setOnClickListener { verifyOtp() }
+        binding.btnResendOtp.setOnClickListener { sendOtp() }
 
         // Restore state
         if (savedInstanceState != null) {
@@ -69,16 +67,9 @@ class LoginFragment : Fragment() {
         outState.putString("currentMobileNumber", currentMobileNumber)
     }
 
-    private fun handleLoginFlow() {
-        if (!otpSent) {
-            sendOtp()
-        } else {
-            verifyOtp()
-        }
-    }
 
     private fun sendOtp() {
-        val phoneNumber = binding.etEmail.text.toString().trim()
+        val phoneNumber = binding.etPhoneNumber.text.toString().trim()
 
         if (phoneNumber.isEmpty()) {
             Toast.makeText(requireContext(), "Please enter phone number", Toast.LENGTH_SHORT).show()
@@ -97,7 +88,6 @@ class LoginFragment : Fragment() {
             try {
                 val response = RetrofitClient.api.sendOtp(SendOtpRequest(phoneNumber))
                 if (response.isSuccessful && response.body() != null) {
-                    val body = response.body()!!
                     currentMobileNumber = phoneNumber
                     otpSent = true
                     updateUIState()
@@ -114,7 +104,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun verifyOtp() {
-        val otp = binding.etPassword.text.toString().trim()
+        val otp = binding.etOtp.text.toString().trim()
 
         if (otp.isEmpty()) {
             Toast.makeText(requireContext(), "Please enter OTP", Toast.LENGTH_SHORT).show()
@@ -151,27 +141,24 @@ class LoginFragment : Fragment() {
 
     private fun updateUIState() {
         if (otpSent) {
-            // Show OTP verification screen
-            binding.etEmail.isEnabled = false
-            binding.etEmail.text?.clear()
-            binding.etEmail.hint = "Awaiting OTP verification..."
-            binding.tilPassword.visibility = View.VISIBLE
-            binding.etPassword.hint = "Enter 6-digit OTP"
-            binding.etPassword.text?.clear()
-            binding.btnLogin.text = "Verify OTP"
+            // Show OTP verification section
+            binding.etPhoneNumber.isEnabled = false
+            binding.btnSendOtp.visibility = View.GONE
+            binding.otpSection.visibility = View.VISIBLE
+            binding.etOtp.requestFocus()
         } else {
             // Show mobile number entry screen
-            binding.etEmail.isEnabled = true
-            binding.etEmail.hint = "Enter 10-digit mobile number"
-            binding.etEmail.text?.clear()
-            binding.tilPassword.visibility = View.GONE
-            binding.etPassword.text?.clear()
-            binding.btnLogin.text = "Send OTP"
+            binding.etPhoneNumber.isEnabled = true
+            binding.etPhoneNumber.text?.clear()
+            binding.btnSendOtp.visibility = View.VISIBLE
+            binding.otpSection.visibility = View.GONE
+            binding.etOtp.text?.clear()
         }
     }
 
     private fun setLoading(loading: Boolean) {
-        binding.btnLogin.isEnabled    = !loading
+        binding.btnSendOtp.isEnabled = !loading
+        binding.btnVerifyOtp.isEnabled = !loading
         binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
     }
 
