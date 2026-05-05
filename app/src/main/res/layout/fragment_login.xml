@@ -35,11 +35,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="40dp"
-            android:text="Enter your phone number for OTP login"
+            android:text="Sign in with your phone number"
             android:textColor="@color/text_secondary"
             android:textSize="14sp" />
 
-        <!-- Phone Number / Status -->
+        <!-- Phone Number Input -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,39 +48,89 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_email"
+                android:id="@+id/et_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
                 android:imeOptions="actionNext" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- OTP (Initially Hidden) -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:hint="Enter 6-digit OTP"
-            android:visibility="gone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:imeOptions="actionDone" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Login Button -->
+        <!-- Send OTP Button -->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_send_otp"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Login"
+            android:text="Send OTP"
             android:textSize="16sp"
             app:cornerRadius="12dp" />
+
+        <!-- OTP Section (Initially Hidden) -->
+        <LinearLayout
+            android:id="@+id/otp_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="24dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter OTP sent to your phone"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- OTP Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="Enter 6-digit OTP"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_otp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:imeOptions="actionDone"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:letterSpacing="0.1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- OTP Timer -->
+            <TextView
+                android:id="@+id/tv_otp_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OTP expires in 10:00"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Verify OTP Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_verify_otp"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Verify OTP"
+                android:textSize="16sp"
+                app:cornerRadius="12dp" />
+
+            <!-- Resend OTP Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_resend_otp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="12dp"
+                android:text="Resend OTP"
+                android:textSize="14sp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:cornerRadius="8dp" />
+        </LinearLayout>
 
         <!-- Progress -->
         <ProgressBar
@@ -90,15 +140,16 @@
             android:layout_marginTop="12dp"
             android:visibility="gone" />
 
-        <!-- Register link -->
+        <!-- Register link - OTP auto-handles registration -->
         <TextView
-            android:id="@+id/tv_go_to_register"
+            android:id="@+id/tv_info_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Don't have an account? Register here"
-            android:textColor="@color/colorPrimary"
-            android:textSize="14sp" />
+            android:text="First time? We'll create an account automatically"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:textStyle="italic" />
 
     </LinearLayout>
 </ScrollView>

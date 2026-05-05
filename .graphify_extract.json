@@ -1,0 +1,2982 @@
+{
+  "nodes": [
+    {
+      "id": "show_summary_py",
+      "label": "show_summary.py",
+      "file_type": "code",
+      "source_file": "show_summary.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_fuelqueueapplication_kt",
+      "label": "FuelQueueApplication.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\FuelQueueApplication.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "fuelqueue_fuelqueueapplication_fuelqueueapplication",
+      "label": "FuelQueueApplication",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\FuelQueueApplication.kt",
+      "source_location": "L6"
+    },
+    {
+      "id": "fuelqueue_fuelqueueapplication_fuelqueueapplication_oncreate",
+      "label": ".onCreate()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\FuelQueueApplication.kt",
+      "source_location": "L7"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_data_api_apiservice_kt",
+      "label": "ApiService.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "api_apiservice_apiservice",
+      "label": "ApiService",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L7"
+    },
+    {
+      "id": "api_apiservice_apiservice_sendotp",
+      "label": ".sendOtp()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L11"
+    },
+    {
+      "id": "api_apiservice_apiservice_verifyotp",
+      "label": ".verifyOtp()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L14"
+    },
+    {
+      "id": "api_apiservice_apiservice_getallstations",
+      "label": ".getAllStations()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L19"
+    },
+    {
+      "id": "api_apiservice_apiservice_getnearbystations",
+      "label": ".getNearbyStations()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L22"
+    },
+    {
+      "id": "api_apiservice_apiservice_getcrowdstatus",
+      "label": ".getCrowdStatus()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L29"
+    },
+    {
+      "id": "api_apiservice_apiservice_sendlocationping",
+      "label": ".sendLocationPing()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L34"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_data_api_retrofitclient_kt",
+      "label": "RetrofitClient.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\RetrofitClient.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "api_retrofitclient_retrofitclient",
+      "label": "RetrofitClient",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\RetrofitClient.kt",
+      "source_location": "L11"
+    },
+    {
+      "id": "api_retrofitclient_retrofitclient_buildclient",
+      "label": ".buildClient()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\RetrofitClient.kt",
+      "source_location": "L13"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_data_model_models_kt",
+      "label": "Models.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "model_models_station",
+      "label": "Station",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L3"
+    },
+    {
+      "id": "model_models_crowdstatus",
+      "label": "CrowdStatus",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L15"
+    },
+    {
+      "id": "model_models_locationping",
+      "label": "LocationPing",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L24"
+    },
+    {
+      "id": "model_models_sendotprequest",
+      "label": "SendOtpRequest",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L34"
+    },
+    {
+      "id": "model_models_verifyotprequest",
+      "label": "VerifyOtpRequest",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L38"
+    },
+    {
+      "id": "model_models_otpresponse",
+      "label": "OtpResponse",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L44"
+    },
+    {
+      "id": "model_models_loginresponse",
+      "label": "LoginResponse",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L51"
+    },
+    {
+      "id": "model_models_loginrequest",
+      "label": "LoginRequest",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L60"
+    },
+    {
+      "id": "model_models_registerrequest",
+      "label": "RegisterRequest",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L65"
+    },
+    {
+      "id": "model_models_messageresponse",
+      "label": "MessageResponse",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L71"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_service_gpstrackerservice_kt",
+      "label": "GpsTrackerService.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "service_gpstrackerservice_gpstrackerservice",
+      "label": "GpsTrackerService",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L17"
+    },
+    {
+      "id": "service_gpstrackerservice_gpstrackerservice_oncreate",
+      "label": ".onCreate()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L29"
+    },
+    {
+      "id": "service_gpstrackerservice_gpstrackerservice_onstartcommand",
+      "label": ".onStartCommand()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L53"
+    },
+    {
+      "id": "service_gpstrackerservice_gpstrackerservice_startlocationupdates",
+      "label": ".startLocationUpdates()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L58"
+    },
+    {
+      "id": "service_gpstrackerservice_onlocationresult",
+      "label": "onLocationResult()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L72"
+    },
+    {
+      "id": "service_gpstrackerservice_gpstrackerservice_buildnotification",
+      "label": ".buildNotification()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L97"
+    },
+    {
+      "id": "service_gpstrackerservice_gpstrackerservice_createnotificationchannel",
+      "label": ".createNotificationChannel()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L113"
+    },
+    {
+      "id": "service_gpstrackerservice_gpstrackerservice_ondestroy",
+      "label": ".onDestroy()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L124"
+    },
+    {
+      "id": "service_gpstrackerservice_gpstrackerservice_onbind",
+      "label": ".onBind()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L132"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_ui_mainactivity_kt",
+      "label": "MainActivity.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\MainActivity.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "ui_mainactivity_mainactivity",
+      "label": "MainActivity",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\MainActivity.kt",
+      "source_location": "L19"
+    },
+    {
+      "id": "ui_mainactivity_mainactivity_oncreate",
+      "label": ".onCreate()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\MainActivity.kt",
+      "source_location": "L38"
+    },
+    {
+      "id": "ui_mainactivity_mainactivity_requestlocationandstarttracking",
+      "label": ".requestLocationAndStartTracking()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\MainActivity.kt",
+      "source_location": "L68"
+    },
+    {
+      "id": "ui_mainactivity_mainactivity_startgpstracking",
+      "label": ".startGpsTracking()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\MainActivity.kt",
+      "source_location": "L86"
+    },
+    {
+      "id": "ui_mainactivity_mainactivity_stopgpstracking",
+      "label": ".stopGpsTracking()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\MainActivity.kt",
+      "source_location": "L95"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_ui_detail_stationdetailfragment_kt",
+      "label": "StationDetailFragment.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "detail_stationdetailfragment_stationdetailfragment",
+      "label": "StationDetailFragment",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L18"
+    },
+    {
+      "id": "detail_stationdetailfragment_stationdetailfragment_oncreateview",
+      "label": ".onCreateView()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L25"
+    },
+    {
+      "id": "detail_stationdetailfragment_stationdetailfragment_onviewcreated",
+      "label": ".onViewCreated()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L33"
+    },
+    {
+      "id": "detail_stationdetailfragment_stationdetailfragment_onresume",
+      "label": ".onResume()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L46"
+    },
+    {
+      "id": "detail_stationdetailfragment_stationdetailfragment_onpause",
+      "label": ".onPause()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L57"
+    },
+    {
+      "id": "detail_stationdetailfragment_stationdetailfragment_loadcrowdstatus",
+      "label": ".loadCrowdStatus()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L62"
+    },
+    {
+      "id": "detail_stationdetailfragment_stationdetailfragment_updateui",
+      "label": ".updateUI()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L81"
+    },
+    {
+      "id": "detail_stationdetailfragment_stationdetailfragment_ondestroyview",
+      "label": ".onDestroyView()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L103"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_ui_list_stationadapter_kt",
+      "label": "StationAdapter.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "list_stationadapter_stationadapter",
+      "label": "StationAdapter",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L12"
+    },
+    {
+      "id": "list_stationadapter_viewholder",
+      "label": "ViewHolder",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L16"
+    },
+    {
+      "id": "list_stationadapter_viewholder_bind",
+      "label": ".bind()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L19"
+    },
+    {
+      "id": "list_stationadapter_stationadapter_oncreateviewholder",
+      "label": ".onCreateViewHolder()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L39"
+    },
+    {
+      "id": "list_stationadapter_stationadapter_onbindviewholder",
+      "label": ".onBindViewHolder()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L46"
+    },
+    {
+      "id": "list_stationadapter_diffcallback",
+      "label": "DiffCallback",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L50"
+    },
+    {
+      "id": "list_stationadapter_diffcallback_areitemsthesame",
+      "label": ".areItemsTheSame()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L51"
+    },
+    {
+      "id": "list_stationadapter_diffcallback_arecontentsthesame",
+      "label": ".areContentsTheSame()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L52"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_ui_list_stationlistfragment_kt",
+      "label": "StationListFragment.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationListFragment.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "list_stationlistfragment_stationlistfragment",
+      "label": "StationListFragment",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationListFragment.kt",
+      "source_location": "L16"
+    },
+    {
+      "id": "list_stationlistfragment_stationlistfragment_oncreateview",
+      "label": ".onCreateView()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationListFragment.kt",
+      "source_location": "L25"
+    },
+    {
+      "id": "list_stationlistfragment_stationlistfragment_onviewcreated",
+      "label": ".onViewCreated()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationListFragment.kt",
+      "source_location": "L33"
+    },
+    {
+      "id": "list_stationlistfragment_stationlistfragment_loadstations",
+      "label": ".loadStations()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationListFragment.kt",
+      "source_location": "L49"
+    },
+    {
+      "id": "list_stationlistfragment_stationlistfragment_ondestroyview",
+      "label": ".onDestroyView()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationListFragment.kt",
+      "source_location": "L71"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_ui_login_loginfragment_kt",
+      "label": "LoginFragment.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "login_loginfragment_loginfragment",
+      "label": "LoginFragment",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L20"
+    },
+    {
+      "id": "login_loginfragment_loginfragment_oncreateview",
+      "label": ".onCreateView()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L28"
+    },
+    {
+      "id": "login_loginfragment_loginfragment_onviewcreated",
+      "label": ".onViewCreated()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L36"
+    },
+    {
+      "id": "login_loginfragment_loginfragment_onsaveinstancestate",
+      "label": ".onSaveInstanceState()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L66"
+    },
+    {
+      "id": "login_loginfragment_loginfragment_handleloginflow",
+      "label": ".handleLoginFlow()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L72"
+    },
+    {
+      "id": "login_loginfragment_loginfragment_sendotp",
+      "label": ".sendOtp()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L80"
+    },
+    {
+      "id": "login_loginfragment_loginfragment_verifyotp",
+      "label": ".verifyOtp()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L116"
+    },
+    {
+      "id": "login_loginfragment_loginfragment_updateuistate",
+      "label": ".updateUIState()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L152"
+    },
+    {
+      "id": "login_loginfragment_loginfragment_setloading",
+      "label": ".setLoading()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L173"
+    },
+    {
+      "id": "login_loginfragment_loginfragment_ondestroyview",
+      "label": ".onDestroyView()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L178"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_ui_login_registerfragment_kt",
+      "label": "RegisterFragment.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "login_registerfragment_registerfragment",
+      "label": "RegisterFragment",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L20"
+    },
+    {
+      "id": "login_registerfragment_registerfragment_oncreateview",
+      "label": ".onCreateView()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L29"
+    },
+    {
+      "id": "login_registerfragment_registerfragment_onviewcreated",
+      "label": ".onViewCreated()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L37"
+    },
+    {
+      "id": "login_registerfragment_registerfragment_onsaveinstancestate",
+      "label": ".onSaveInstanceState()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L58"
+    },
+    {
+      "id": "login_registerfragment_registerfragment_handleregistrationflow",
+      "label": ".handleRegistrationFlow()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L65"
+    },
+    {
+      "id": "login_registerfragment_registerfragment_sendotp",
+      "label": ".sendOtp()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L73"
+    },
+    {
+      "id": "login_registerfragment_registerfragment_verifyotp",
+      "label": ".verifyOtp()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L111"
+    },
+    {
+      "id": "login_registerfragment_registerfragment_updateuistate",
+      "label": ".updateUIState()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L148"
+    },
+    {
+      "id": "login_registerfragment_registerfragment_setloading",
+      "label": ".setLoading()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L170"
+    },
+    {
+      "id": "login_registerfragment_registerfragment_ondestroyview",
+      "label": ".onDestroyView()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L175"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_ui_map_mapfragment_kt",
+      "label": "MapFragment.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "map_mapfragment_mapfragment",
+      "label": "MapFragment",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L23"
+    },
+    {
+      "id": "map_mapfragment_mapfragment_oncreateview",
+      "label": ".onCreateView()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L35"
+    },
+    {
+      "id": "map_mapfragment_mapfragment_onviewcreated",
+      "label": ".onViewCreated()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L43"
+    },
+    {
+      "id": "map_mapfragment_mapfragment_onmapready",
+      "label": ".onMapReady()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L57"
+    },
+    {
+      "id": "map_mapfragment_mapfragment_loadstations",
+      "label": ".loadStations()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L86"
+    },
+    {
+      "id": "map_mapfragment_mapfragment_updatemarkers",
+      "label": ".updateMarkers()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L107"
+    },
+    {
+      "id": "map_mapfragment_mapfragment_onresume",
+      "label": ".onResume()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L133"
+    },
+    {
+      "id": "map_mapfragment_mapfragment_onpause",
+      "label": ".onPause()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L144"
+    },
+    {
+      "id": "map_mapfragment_mapfragment_ondestroyview",
+      "label": ".onDestroyView()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L149"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_ui_map_mapfragmentdirections_kt",
+      "label": "MapFragmentDirections.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragmentDirections.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "map_mapfragmentdirections_mapfragmentdirections",
+      "label": "MapFragmentDirections",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragmentDirections.kt",
+      "source_location": "L6"
+    },
+    {
+      "id": "map_mapfragmentdirections_mapfragmentdirections_actionmaptodetail",
+      "label": ".actionMapToDetail()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragmentDirections.kt",
+      "source_location": "L7"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_utils_crowdutils_kt",
+      "label": "CrowdUtils.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\CrowdUtils.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "utils_crowdutils_crowdutils",
+      "label": "CrowdUtils",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\CrowdUtils.kt",
+      "source_location": "L6"
+    },
+    {
+      "id": "utils_crowdutils_crowdutils_getcolor",
+      "label": ".getColor()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\CrowdUtils.kt",
+      "source_location": "L8"
+    },
+    {
+      "id": "utils_crowdutils_crowdutils_getemoji",
+      "label": ".getEmoji()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\CrowdUtils.kt",
+      "source_location": "L15"
+    },
+    {
+      "id": "utils_crowdutils_crowdutils_getlabel",
+      "label": ".getLabel()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\CrowdUtils.kt",
+      "source_location": "L22"
+    },
+    {
+      "id": "utils_crowdutils_crowdutils_getadvice",
+      "label": ".getAdvice()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\CrowdUtils.kt",
+      "source_location": "L29"
+    },
+    {
+      "id": "app_src_main_java_com_fuelqueue_utils_sessionmanager_kt",
+      "label": "SessionManager.kt",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "utils_sessionmanager_sessionmanager",
+      "label": "SessionManager",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L6"
+    },
+    {
+      "id": "utils_sessionmanager_sessionmanager_init",
+      "label": ".init()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L16"
+    },
+    {
+      "id": "utils_sessionmanager_sessionmanager_savesession",
+      "label": ".saveSession()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L20"
+    },
+    {
+      "id": "utils_sessionmanager_sessionmanager_gettoken",
+      "label": ".getToken()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L29"
+    },
+    {
+      "id": "utils_sessionmanager_sessionmanager_getuserid",
+      "label": ".getUserId()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L30"
+    },
+    {
+      "id": "utils_sessionmanager_sessionmanager_getname",
+      "label": ".getName()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L31"
+    },
+    {
+      "id": "utils_sessionmanager_sessionmanager_getphonenumber",
+      "label": ".getPhoneNumber()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L32"
+    },
+    {
+      "id": "utils_sessionmanager_sessionmanager_isloggedin",
+      "label": ".isLoggedIn()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L33"
+    },
+    {
+      "id": "utils_sessionmanager_sessionmanager_clearsession",
+      "label": ".clearSession()",
+      "file_type": "code",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L35"
+    },
+    {
+      "id": "fuelqueue_application",
+      "label": "FuelQueueApplication",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/FuelQueueApplication.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "session_manager",
+      "label": "SessionManager",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/utils/SessionManager.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "main_activity",
+      "label": "MainActivity",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/ui/MainActivity.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "login_fragment",
+      "label": "LoginFragment",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/ui/login/LoginFragment.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "register_fragment",
+      "label": "RegisterFragment",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/ui/login/RegisterFragment.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "station_list_fragment",
+      "label": "StationListFragment",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/ui/list/StationListFragment.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "station_adapter",
+      "label": "StationAdapter",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/ui/list/StationAdapter.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "station_detail_fragment",
+      "label": "StationDetailFragment",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/ui/detail/StationDetailFragment.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "map_fragment",
+      "label": "MapFragment",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/ui/map/MapFragment.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "gps_tracker_service",
+      "label": "GpsTrackerService",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/service/GpsTrackerService.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "retrofit_client",
+      "label": "RetrofitClient",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/data/api/RetrofitClient.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "api_service",
+      "label": "ApiService",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/data/api/ApiService.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "models",
+      "label": "Data Models",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/data/model/Models.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "crowd_utils",
+      "label": "CrowdUtils",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/utils/CrowdUtils.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "project_overview",
+      "label": "Project Overview",
+      "file_type": "document",
+      "source_file": "copilot/PROJECT_OVERVIEW.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "agents_guide",
+      "label": "AGENTS.md - AI Agent Guidance",
+      "file_type": "document",
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "auto_login_implementation",
+      "label": "Auto-Login Feature Implementation",
+      "file_type": "rationale",
+      "source_file": "copilot/IMPLEMENTATION_COMPLETE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Skip redundant login and permission dialogs on app restart for returning users. First-time users see full OTP+permission flow; returning users with valid session and granted permission skip to map instantly (0.5s vs 2-3s). GPS tracking starts during navigation instead of after map load."
+    },
+    {
+      "id": "station_model",
+      "label": "Station",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/data/model/Models.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "crowd_status_model",
+      "label": "CrowdStatus",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/data/model/Models.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "location_ping_model",
+      "label": "LocationPing",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/data/model/Models.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "send_otp_request",
+      "label": "SendOtpRequest",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/data/model/Models.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "verify_otp_request",
+      "label": "VerifyOtpRequest",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/data/model/Models.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "login_response",
+      "label": "LoginResponse",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/data/model/Models.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "otp_response",
+      "label": "OtpResponse",
+      "file_type": "code",
+      "source_file": "app/src/main/java/com/fuelqueue/data/model/Models.kt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "auto_login_flow",
+      "label": "Auto-Login Flow Pattern",
+      "file_type": "rationale",
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "LoginFragment checks SessionManager.isLoggedIn() on onViewCreated. If logged in, request location immediately and navigate to map after 100ms delay. If not logged in, show OTP login UI. On successful login, save session and request location before navigation."
+    },
+    {
+      "id": "otp_auth_flow",
+      "label": "OTP Authentication Flow",
+      "file_type": "rationale",
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Two-step mobile OTP-based authentication: Step 1 - User enters 10-digit mobile number, frontend validates, calls sendOtp endpoint; Step 2 - Backend sends OTP, user receives and enters 6-digit OTP, frontend calls verifyOtp endpoint, backend returns JWT token and user info. SessionManager stores token for subsequent requests."
+    },
+    {
+      "id": "gps_tracking_flow",
+      "label": "GPS Tracking Flow",
+      "file_type": "rationale",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "After login, MainActivity.requestLocationAndStartTracking() checks permission and starts GpsTrackerService. Service runs FusedLocationProviderClient.requestLocationUpdates() every 10 seconds. Each location triggers LocationPing POST to /api/gps/ping. Backend checks 80m geofence around each station, updates crowd level based on active user count within geofence."
+    },
+    {
+      "id": "single_activity_navigation",
+      "label": "Single-Activity Navigation Pattern",
+      "file_type": "rationale",
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "MainActivity hosts NavHostFragment that switches between 5 screens (Login, Register, Map, List, Detail) via Jetpack Navigation. Bottom nav visibility controlled by destination listener - hidden for login/register, visible for other screens. All navigation defined in nav_graph.xml."
+    },
+    {
+      "id": "retrofit_jwt_interceptor",
+      "label": "Retrofit JWT Interceptor Pattern",
+      "file_type": "rationale",
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "RetrofitClient implements OkHttp interceptor that automatically injects JWT Bearer token into Authorization header for all API requests. Token retrieved from SessionManager.getToken(). If token null, request proceeds without auth header (for unauthenticated endpoints like sendOtp)."
+    },
+    {
+      "id": "auto_refresh_pattern",
+      "label": "Auto-Refresh Coroutine Pattern",
+      "file_type": "rationale",
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "StationDetailFragment uses Job in onResume() that loops with 15s delay calling loadCrowdStatus(). Job cancelled in onPause(). Checks isActive inside loop. Uses lifecycleScope so cancellation happens on Fragment destroy."
+    },
+    {
+      "id": "view_binding_pattern",
+      "label": "ViewBinding Pattern",
+      "file_type": "rationale",
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "All fragments use private var _binding and getter that returns _binding!!. onCreateView() inflates and stores binding, onDestroyView() sets _binding = null. Provides type-safe view access without findViewById."
+    }
+  ],
+  "edges": [
+    {
+      "source": "show_summary_py",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "show_summary.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "show_summary_py",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "show_summary.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_fuelqueueapplication_kt",
+      "target": "fuelqueue_fuelqueueapplication_fuelqueueapplication",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\FuelQueueApplication.kt",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "fuelqueue_fuelqueueapplication_fuelqueueapplication",
+      "target": "fuelqueue_fuelqueueapplication_fuelqueueapplication_oncreate",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\FuelQueueApplication.kt",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_data_api_apiservice_kt",
+      "target": "api_apiservice_apiservice",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "api_apiservice_apiservice",
+      "target": "api_apiservice_apiservice_sendotp",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "api_apiservice_apiservice",
+      "target": "api_apiservice_apiservice_verifyotp",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "api_apiservice_apiservice",
+      "target": "api_apiservice_apiservice_getallstations",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "api_apiservice_apiservice",
+      "target": "api_apiservice_apiservice_getnearbystations",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "api_apiservice_apiservice",
+      "target": "api_apiservice_apiservice_getcrowdstatus",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "api_apiservice_apiservice",
+      "target": "api_apiservice_apiservice_sendlocationping",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\ApiService.kt",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_data_api_retrofitclient_kt",
+      "target": "api_retrofitclient_retrofitclient",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\RetrofitClient.kt",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "api_retrofitclient_retrofitclient",
+      "target": "api_retrofitclient_retrofitclient_buildclient",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\api\\RetrofitClient.kt",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_data_model_models_kt",
+      "target": "model_models_station",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_data_model_models_kt",
+      "target": "model_models_crowdstatus",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_data_model_models_kt",
+      "target": "model_models_locationping",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_data_model_models_kt",
+      "target": "model_models_sendotprequest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_data_model_models_kt",
+      "target": "model_models_verifyotprequest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_data_model_models_kt",
+      "target": "model_models_otpresponse",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_data_model_models_kt",
+      "target": "model_models_loginresponse",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_data_model_models_kt",
+      "target": "model_models_loginrequest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_data_model_models_kt",
+      "target": "model_models_registerrequest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_data_model_models_kt",
+      "target": "model_models_messageresponse",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\data\\model\\Models.kt",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_service_gpstrackerservice_kt",
+      "target": "service_gpstrackerservice_gpstrackerservice",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "service_gpstrackerservice_gpstrackerservice",
+      "target": "service_gpstrackerservice_gpstrackerservice_oncreate",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "service_gpstrackerservice_gpstrackerservice",
+      "target": "service_gpstrackerservice_gpstrackerservice_onstartcommand",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "service_gpstrackerservice_gpstrackerservice",
+      "target": "service_gpstrackerservice_gpstrackerservice_startlocationupdates",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_service_gpstrackerservice_kt",
+      "target": "service_gpstrackerservice_onlocationresult",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "service_gpstrackerservice_gpstrackerservice",
+      "target": "service_gpstrackerservice_gpstrackerservice_buildnotification",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L97",
+      "weight": 1.0
+    },
+    {
+      "source": "service_gpstrackerservice_gpstrackerservice",
+      "target": "service_gpstrackerservice_gpstrackerservice_createnotificationchannel",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "service_gpstrackerservice_gpstrackerservice",
+      "target": "service_gpstrackerservice_gpstrackerservice_ondestroy",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L124",
+      "weight": 1.0
+    },
+    {
+      "source": "service_gpstrackerservice_gpstrackerservice",
+      "target": "service_gpstrackerservice_gpstrackerservice_onbind",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L132",
+      "weight": 1.0
+    },
+    {
+      "source": "service_gpstrackerservice_gpstrackerservice_oncreate",
+      "target": "service_gpstrackerservice_gpstrackerservice_createnotificationchannel",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "service_gpstrackerservice_gpstrackerservice_oncreate",
+      "target": "service_gpstrackerservice_gpstrackerservice_buildnotification",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "service_gpstrackerservice_gpstrackerservice_oncreate",
+      "target": "service_gpstrackerservice_gpstrackerservice_startlocationupdates",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_ui_mainactivity_kt",
+      "target": "ui_mainactivity_mainactivity",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\MainActivity.kt",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "ui_mainactivity_mainactivity",
+      "target": "ui_mainactivity_mainactivity_oncreate",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\MainActivity.kt",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "ui_mainactivity_mainactivity",
+      "target": "ui_mainactivity_mainactivity_requestlocationandstarttracking",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\MainActivity.kt",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "ui_mainactivity_mainactivity",
+      "target": "ui_mainactivity_mainactivity_startgpstracking",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\MainActivity.kt",
+      "source_location": "L86",
+      "weight": 1.0
+    },
+    {
+      "source": "ui_mainactivity_mainactivity",
+      "target": "ui_mainactivity_mainactivity_stopgpstracking",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\MainActivity.kt",
+      "source_location": "L95",
+      "weight": 1.0
+    },
+    {
+      "source": "ui_mainactivity_mainactivity_requestlocationandstarttracking",
+      "target": "ui_mainactivity_mainactivity_startgpstracking",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\MainActivity.kt",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_ui_detail_stationdetailfragment_kt",
+      "target": "detail_stationdetailfragment_stationdetailfragment",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "detail_stationdetailfragment_stationdetailfragment",
+      "target": "detail_stationdetailfragment_stationdetailfragment_oncreateview",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "detail_stationdetailfragment_stationdetailfragment",
+      "target": "detail_stationdetailfragment_stationdetailfragment_onviewcreated",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "detail_stationdetailfragment_stationdetailfragment",
+      "target": "detail_stationdetailfragment_stationdetailfragment_onresume",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "detail_stationdetailfragment_stationdetailfragment",
+      "target": "detail_stationdetailfragment_stationdetailfragment_onpause",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "detail_stationdetailfragment_stationdetailfragment",
+      "target": "detail_stationdetailfragment_stationdetailfragment_loadcrowdstatus",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "detail_stationdetailfragment_stationdetailfragment",
+      "target": "detail_stationdetailfragment_stationdetailfragment_updateui",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "detail_stationdetailfragment_stationdetailfragment",
+      "target": "detail_stationdetailfragment_stationdetailfragment_ondestroyview",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "detail_stationdetailfragment_stationdetailfragment_onviewcreated",
+      "target": "detail_stationdetailfragment_stationdetailfragment_loadcrowdstatus",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "detail_stationdetailfragment_stationdetailfragment_onresume",
+      "target": "detail_stationdetailfragment_stationdetailfragment_loadcrowdstatus",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "detail_stationdetailfragment_stationdetailfragment_loadcrowdstatus",
+      "target": "detail_stationdetailfragment_stationdetailfragment_updateui",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\detail\\StationDetailFragment.kt",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_ui_list_stationadapter_kt",
+      "target": "list_stationadapter_stationadapter",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_ui_list_stationadapter_kt",
+      "target": "list_stationadapter_viewholder",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "list_stationadapter_viewholder",
+      "target": "list_stationadapter_viewholder_bind",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "list_stationadapter_stationadapter",
+      "target": "list_stationadapter_stationadapter_oncreateviewholder",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "list_stationadapter_stationadapter",
+      "target": "list_stationadapter_stationadapter_onbindviewholder",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_ui_list_stationadapter_kt",
+      "target": "list_stationadapter_diffcallback",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "list_stationadapter_diffcallback",
+      "target": "list_stationadapter_diffcallback_areitemsthesame",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "list_stationadapter_diffcallback",
+      "target": "list_stationadapter_diffcallback_arecontentsthesame",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "list_stationadapter_stationadapter_oncreateviewholder",
+      "target": "list_stationadapter_viewholder",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "list_stationadapter_stationadapter_onbindviewholder",
+      "target": "list_stationadapter_viewholder_bind",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationAdapter.kt",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_ui_list_stationlistfragment_kt",
+      "target": "list_stationlistfragment_stationlistfragment",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationListFragment.kt",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "list_stationlistfragment_stationlistfragment",
+      "target": "list_stationlistfragment_stationlistfragment_oncreateview",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationListFragment.kt",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "list_stationlistfragment_stationlistfragment",
+      "target": "list_stationlistfragment_stationlistfragment_onviewcreated",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationListFragment.kt",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "list_stationlistfragment_stationlistfragment",
+      "target": "list_stationlistfragment_stationlistfragment_loadstations",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationListFragment.kt",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "list_stationlistfragment_stationlistfragment",
+      "target": "list_stationlistfragment_stationlistfragment_ondestroyview",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationListFragment.kt",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "list_stationlistfragment_stationlistfragment_onviewcreated",
+      "target": "list_stationlistfragment_stationlistfragment_loadstations",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationListFragment.kt",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_ui_login_loginfragment_kt",
+      "target": "login_loginfragment_loginfragment",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment",
+      "target": "login_loginfragment_loginfragment_oncreateview",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment",
+      "target": "login_loginfragment_loginfragment_onviewcreated",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment",
+      "target": "login_loginfragment_loginfragment_onsaveinstancestate",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment",
+      "target": "login_loginfragment_loginfragment_handleloginflow",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment",
+      "target": "login_loginfragment_loginfragment_sendotp",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L80",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment",
+      "target": "login_loginfragment_loginfragment_verifyotp",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L116",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment",
+      "target": "login_loginfragment_loginfragment_updateuistate",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L152",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment",
+      "target": "login_loginfragment_loginfragment_setloading",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L173",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment",
+      "target": "login_loginfragment_loginfragment_ondestroyview",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L178",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment_onviewcreated",
+      "target": "login_loginfragment_loginfragment_handleloginflow",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment_onviewcreated",
+      "target": "login_loginfragment_loginfragment_updateuistate",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment_handleloginflow",
+      "target": "login_loginfragment_loginfragment_sendotp",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment_handleloginflow",
+      "target": "login_loginfragment_loginfragment_verifyotp",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment_sendotp",
+      "target": "login_loginfragment_loginfragment_setloading",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment_sendotp",
+      "target": "login_loginfragment_loginfragment_updateuistate",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment_verifyotp",
+      "target": "login_loginfragment_loginfragment_setloading",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L129",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_ui_login_registerfragment_kt",
+      "target": "login_registerfragment_registerfragment",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment",
+      "target": "login_registerfragment_registerfragment_oncreateview",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment",
+      "target": "login_registerfragment_registerfragment_onviewcreated",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment",
+      "target": "login_registerfragment_registerfragment_onsaveinstancestate",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment",
+      "target": "login_registerfragment_registerfragment_handleregistrationflow",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment",
+      "target": "login_registerfragment_registerfragment_sendotp",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment",
+      "target": "login_registerfragment_registerfragment_verifyotp",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment",
+      "target": "login_registerfragment_registerfragment_updateuistate",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L148",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment",
+      "target": "login_registerfragment_registerfragment_setloading",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L170",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment",
+      "target": "login_registerfragment_registerfragment_ondestroyview",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L175",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment_onviewcreated",
+      "target": "login_registerfragment_registerfragment_handleregistrationflow",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment_onviewcreated",
+      "target": "login_registerfragment_registerfragment_updateuistate",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment_handleregistrationflow",
+      "target": "login_registerfragment_registerfragment_sendotp",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment_handleregistrationflow",
+      "target": "login_registerfragment_registerfragment_verifyotp",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment_sendotp",
+      "target": "login_registerfragment_registerfragment_setloading",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment_sendotp",
+      "target": "login_registerfragment_registerfragment_updateuistate",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L98",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment_verifyotp",
+      "target": "login_registerfragment_registerfragment_setloading",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L124",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_ui_map_mapfragment_kt",
+      "target": "map_mapfragment_mapfragment",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "map_mapfragment_mapfragment",
+      "target": "map_mapfragment_mapfragment_oncreateview",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "map_mapfragment_mapfragment",
+      "target": "map_mapfragment_mapfragment_onviewcreated",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "map_mapfragment_mapfragment",
+      "target": "map_mapfragment_mapfragment_onmapready",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "map_mapfragment_mapfragment",
+      "target": "map_mapfragment_mapfragment_loadstations",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L86",
+      "weight": 1.0
+    },
+    {
+      "source": "map_mapfragment_mapfragment",
+      "target": "map_mapfragment_mapfragment_updatemarkers",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L107",
+      "weight": 1.0
+    },
+    {
+      "source": "map_mapfragment_mapfragment",
+      "target": "map_mapfragment_mapfragment_onresume",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L133",
+      "weight": 1.0
+    },
+    {
+      "source": "map_mapfragment_mapfragment",
+      "target": "map_mapfragment_mapfragment_onpause",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L144",
+      "weight": 1.0
+    },
+    {
+      "source": "map_mapfragment_mapfragment",
+      "target": "map_mapfragment_mapfragment_ondestroyview",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L149",
+      "weight": 1.0
+    },
+    {
+      "source": "map_mapfragment_mapfragment_onviewcreated",
+      "target": "map_mapfragment_mapfragment_loadstations",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "map_mapfragment_mapfragment_onmapready",
+      "target": "map_mapfragment_mapfragment_loadstations",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L83",
+      "weight": 1.0
+    },
+    {
+      "source": "map_mapfragment_mapfragment_loadstations",
+      "target": "map_mapfragment_mapfragment_updatemarkers",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
+      "source": "map_mapfragment_mapfragment_onresume",
+      "target": "map_mapfragment_mapfragment_loadstations",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragment.kt",
+      "source_location": "L139",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_ui_map_mapfragmentdirections_kt",
+      "target": "map_mapfragmentdirections_mapfragmentdirections",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragmentDirections.kt",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "map_mapfragmentdirections_mapfragmentdirections",
+      "target": "map_mapfragmentdirections_mapfragmentdirections_actionmaptodetail",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\map\\MapFragmentDirections.kt",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_utils_crowdutils_kt",
+      "target": "utils_crowdutils_crowdutils",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\CrowdUtils.kt",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_crowdutils_crowdutils",
+      "target": "utils_crowdutils_crowdutils_getcolor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\CrowdUtils.kt",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_crowdutils_crowdutils",
+      "target": "utils_crowdutils_crowdutils_getemoji",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\CrowdUtils.kt",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_crowdutils_crowdutils",
+      "target": "utils_crowdutils_crowdutils_getlabel",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\CrowdUtils.kt",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_crowdutils_crowdutils",
+      "target": "utils_crowdutils_crowdutils_getadvice",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\CrowdUtils.kt",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "app_src_main_java_com_fuelqueue_utils_sessionmanager_kt",
+      "target": "utils_sessionmanager_sessionmanager",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_sessionmanager_sessionmanager",
+      "target": "utils_sessionmanager_sessionmanager_init",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_sessionmanager_sessionmanager",
+      "target": "utils_sessionmanager_sessionmanager_savesession",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_sessionmanager_sessionmanager",
+      "target": "utils_sessionmanager_sessionmanager_gettoken",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_sessionmanager_sessionmanager",
+      "target": "utils_sessionmanager_sessionmanager_getuserid",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_sessionmanager_sessionmanager",
+      "target": "utils_sessionmanager_sessionmanager_getname",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_sessionmanager_sessionmanager",
+      "target": "utils_sessionmanager_sessionmanager_getphonenumber",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_sessionmanager_sessionmanager",
+      "target": "utils_sessionmanager_sessionmanager_isloggedin",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_sessionmanager_sessionmanager",
+      "target": "utils_sessionmanager_sessionmanager_clearsession",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_sessionmanager_sessionmanager_isloggedin",
+      "target": "utils_sessionmanager_sessionmanager_gettoken",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\utils\\SessionManager.kt",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "service_gpstrackerservice_onlocationresult",
+      "target": "model_models_locationping",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\service\\GpsTrackerService.kt",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "list_stationlistfragment_stationlistfragment_onviewcreated",
+      "target": "list_stationadapter_stationadapter",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\list\\StationListFragment.kt",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment_sendotp",
+      "target": "model_models_sendotprequest",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L98",
+      "weight": 1.0
+    },
+    {
+      "source": "login_loginfragment_loginfragment_verifyotp",
+      "target": "model_models_verifyotprequest",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\LoginFragment.kt",
+      "source_location": "L134",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment_sendotp",
+      "target": "model_models_sendotprequest",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L92",
+      "weight": 1.0
+    },
+    {
+      "source": "login_registerfragment_registerfragment_verifyotp",
+      "target": "model_models_verifyotprequest",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app\\src\\main\\java\\com\\fuelqueue\\ui\\login\\RegisterFragment.kt",
+      "source_location": "L130",
+      "weight": 1.0
+    },
+    {
+      "source": "fuelqueue_application",
+      "target": "session_manager",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/FuelQueueApplication.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "main_activity",
+      "target": "session_manager",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/MainActivity.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "main_activity",
+      "target": "gps_tracker_service",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/MainActivity.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "login_fragment",
+      "target": "session_manager",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/login/LoginFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "login_fragment",
+      "target": "main_activity",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/login/LoginFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "login_fragment",
+      "target": "api_service",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/login/LoginFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "login_fragment",
+      "target": "send_otp_request",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/login/LoginFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "login_fragment",
+      "target": "verify_otp_request",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/login/LoginFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "login_fragment",
+      "target": "login_response",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/login/LoginFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "register_fragment",
+      "target": "session_manager",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/login/RegisterFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "register_fragment",
+      "target": "api_service",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/login/RegisterFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "station_list_fragment",
+      "target": "api_service",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/list/StationListFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "station_list_fragment",
+      "target": "station_adapter",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/list/StationListFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "station_list_fragment",
+      "target": "station_model",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/list/StationListFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "station_detail_fragment",
+      "target": "api_service",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/detail/StationDetailFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "station_detail_fragment",
+      "target": "crowd_status_model",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/detail/StationDetailFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "station_detail_fragment",
+      "target": "crowd_utils",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/detail/StationDetailFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "gps_tracker_service",
+      "target": "session_manager",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/service/GpsTrackerService.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "gps_tracker_service",
+      "target": "api_service",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/service/GpsTrackerService.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "gps_tracker_service",
+      "target": "location_ping_model",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/service/GpsTrackerService.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "retrofit_client",
+      "target": "session_manager",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/data/api/RetrofitClient.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "retrofit_client",
+      "target": "api_service",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/data/api/RetrofitClient.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "api_service",
+      "target": "send_otp_request",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/data/api/ApiService.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "api_service",
+      "target": "verify_otp_request",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/data/api/ApiService.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "api_service",
+      "target": "login_response",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/data/api/ApiService.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "api_service",
+      "target": "otp_response",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/data/api/ApiService.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "api_service",
+      "target": "station_model",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/data/api/ApiService.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "api_service",
+      "target": "crowd_status_model",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/data/api/ApiService.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "api_service",
+      "target": "location_ping_model",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/data/api/ApiService.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "station_adapter",
+      "target": "station_model",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/list/StationAdapter.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "map_fragment",
+      "target": "api_service",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/map/MapFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "map_fragment",
+      "target": "station_model",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/map/MapFragment.kt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "auto_login_implementation",
+      "relation": "rationale_for",
+      "target": "login_fragment",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "copilot/IMPLEMENTATION_COMPLETE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "auto_login_implementation",
+      "relation": "rationale_for",
+      "target": "main_activity",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "copilot/IMPLEMENTATION_COMPLETE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "auto_login_flow",
+      "target": "auto_login_implementation",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "otp_auth_flow",
+      "target": "login_fragment",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "otp_auth_flow",
+      "target": "register_fragment",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "gps_tracking_flow",
+      "target": "gps_tracker_service",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "single_activity_navigation",
+      "target": "main_activity",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "single_activity_navigation",
+      "target": "login_fragment",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "single_activity_navigation",
+      "target": "station_list_fragment",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "retrofit_jwt_interceptor",
+      "target": "retrofit_client",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "retrofit_jwt_interceptor",
+      "target": "session_manager",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "auto_refresh_pattern",
+      "target": "station_detail_fragment",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "view_binding_pattern",
+      "target": "login_fragment",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "view_binding_pattern",
+      "target": "station_detail_fragment",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "copilot/AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "otp_login_flow",
+      "label": "OTP-Based Authentication Flow",
+      "nodes": [
+        "login_fragment",
+        "send_otp_request",
+        "verify_otp_request",
+        "session_manager",
+        "api_service"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/login/LoginFragment.kt"
+    },
+    {
+      "id": "auto_login_auto_location",
+      "label": "Auto-Login with Location Request",
+      "nodes": [
+        "login_fragment",
+        "main_activity",
+        "session_manager",
+        "gps_tracker_service"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/login/LoginFragment.kt"
+    },
+    {
+      "id": "crowd_tracking_display",
+      "label": "Crowd Data Tracking and Display",
+      "nodes": [
+        "gps_tracker_service",
+        "location_ping_model",
+        "api_service",
+        "station_detail_fragment",
+        "crowd_status_model",
+        "crowd_utils"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/detail/StationDetailFragment.kt"
+    },
+    {
+      "id": "station_list_detail_navigation",
+      "label": "Station List to Detail Navigation",
+      "nodes": [
+        "station_list_fragment",
+        "station_adapter",
+        "station_model",
+        "station_detail_fragment"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/src/main/java/com/fuelqueue/ui/list/StationListFragment.kt"
+    }
+  ],
+  "input_tokens": 12500,
+  "output_tokens": 8320
+}

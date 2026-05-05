@@ -1,3 +1,4 @@
+# 📊 Project Overview — Auto-Login Implementation
 
 > Complete summary of what was accomplished
 
