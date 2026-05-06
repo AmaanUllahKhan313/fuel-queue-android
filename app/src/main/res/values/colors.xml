@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1565C0</color>
-    <color name="colorPrimaryDark">#0D47A1</color>
-    <color name="colorAccent">#FF6F00</color>
-    <color name="background">#F5F7FA</color>
+    <!-- Primary blue theme -->
+    <color name="colorPrimary">#0052CC</color>
+    <color name="colorPrimaryDark">#003A99</color>
+    <color name="colorPrimaryLight">#E8F0FF</color>
+
+    <!-- Accents: Teal and Orange -->
+    <color name="colorAccent">#FF6B4A</color>
+    <color name="colorTeal">#1DB584</color>
+    <color name="colorTealLight">#E8F9F5</color>
+
+    <!-- Backgrounds -->
+    <color name="background">#F0F3FF</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_light">#F8FAFF</color>
     <color name="white">#FFFFFF</color>
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
-    <color name="crowd_low">#2E7D32</color>
-    <color name="crowd_medium">#F57F17</color>
-    <color name="crowd_high">#C62828</color>
+    <color name="lavender">#E8E8F8</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#1A1A2E</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_tertiary">#9CA3AF</color>
+
+    <!-- Crowd status colors -->
+    <color name="crowd_low">#1DB584</color>
+    <color name="crowd_medium">#F59E0B</color>
+    <color name="crowd_high">#EF4444</color>
+
+    <!-- Additional utilities -->
+    <color name="divider">#E5E7EB</color>
+    <color name="disabled">#D1D5DB</color>
 </resources>
