@@ -28,42 +28,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="6dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="@color/colorPrimary">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="24dp">
+                android:padding="28dp">
 
                 <TextView
                     android:id="@+id/tv_crowd_emoji"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="🟢"
-                    android:textSize="56sp" />
+                    android:textSize="64sp" />
 
                 <TextView
                     android:id="@+id/tv_crowd_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="12dp"
                     android:text="QUIET — Go now!"
                     android:textColor="#FFFFFF"
-                    android:textSize="22sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_advice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="Great time to fill up!"
-                    android:textColor="#EEFFFFFF"
-                    android:textSize="14sp" />
+                    android:textColor="#E8F0FF"
+                    android:textSize="15sp"
+                    android:lineSpacingExtra="2dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -190,8 +192,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="3dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/surface">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -371,8 +374,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="3dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/surface">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -502,8 +506,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="3dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/surface">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -688,9 +693,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="3dp"
-            android:background="#F0F0F0">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/surface">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -727,10 +732,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:text="🔄 Refresh"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     app:cornerRadius="20dp"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+                    app:backgroundTint="@color/colorAccent" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

@@ -100,7 +100,10 @@
             android:layout_height="56dp"
             android:text="Send OTP"
             android:textSize="16sp"
-            app:cornerRadius="12dp" />
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:cornerRadius="28dp"
+            app:backgroundTint="@color/colorAccent" />
 
         <ProgressBar
             android:id="@+id/progress_bar"

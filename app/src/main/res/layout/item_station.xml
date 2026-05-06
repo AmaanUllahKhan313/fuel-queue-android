@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="12dp"
-    android:layout_marginVertical="6dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="4dp">
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="6dp"
+    app:cardBackgroundColor="@color/surface">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
         <!-- Crowd color indicator stripe -->
         <View
             android:id="@+id/crowd_indicator"
-            android:layout_width="6dp"
+            android:layout_width="5dp"
             android:layout_height="match_parent"
             android:background="@color/colorPrimary" />
 
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="14dp">
+            android:padding="16dp">
 
             <!-- Station name + emoji -->
             <LinearLayout
@@ -40,8 +41,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="🟢"
-                    android:textSize="20sp"
-                    android:layout_marginEnd="8dp" />
+                    android:textSize="22sp"
+                    android:layout_marginEnd="10dp" />
 
                 <TextView
                     android:id="@+id/tv_station_name"
@@ -59,14 +60,17 @@
                     android:layout_height="wrap_content"
                     android:text="1.2 km"
                     android:textColor="@color/text_secondary"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:background="@drawable/distance_badge"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="6dp"
                 android:text="Address"
                 android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
@@ -75,8 +79,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
                 <TextView
                     android:id="@+id/tv_crowd_level"
@@ -112,10 +117,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="14dp"
             android:text="›"
             android:textColor="@color/text_secondary"
-            android:textSize="28sp" />
+            android:textSize="32sp" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
