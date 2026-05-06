@@ -9,7 +9,8 @@ data class Station(
     val distanceMeters: Double,
     val crowdLevel: String,       // "LOW" | "MEDIUM" | "HIGH"
     val activeUsers: Int,
-    val estimatedWaitMinutes: Int
+    val estimatedWaitMinutes: Int,
+    val updatedAt: Long = 0L
 )
 
 data class CrowdStatus(

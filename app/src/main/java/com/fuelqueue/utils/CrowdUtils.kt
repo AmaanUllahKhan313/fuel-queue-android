@@ -1,15 +1,15 @@
 package com.fuelqueue.utils
 
-import android.graphics.Color
+import androidx.core.content.ContextCompat
 import com.fuelqueue.R
 
 object CrowdUtils {
 
     fun getColor(crowdLevel: String): Int = when (crowdLevel) {
-        "LOW"    -> Color.parseColor("#2E7D32")   // dark green
-        "MEDIUM" -> Color.parseColor("#F57F17")   // amber
-        "HIGH"   -> Color.parseColor("#C62828")   // red
-        else     -> Color.parseColor("#607D8B")   // grey
+        "LOW"    -> 0xFF1DB584.toInt()      // Teal from new palette
+        "MEDIUM" -> 0xFFF59E0B.toInt()      // Amber/Orange
+        "HIGH"   -> 0xFFEF4444.toInt()      // Red
+        else     -> 0xFF9CA3AF.toInt()      // Gray
     }
 
     fun getEmoji(crowdLevel: String): String = when (crowdLevel) {
