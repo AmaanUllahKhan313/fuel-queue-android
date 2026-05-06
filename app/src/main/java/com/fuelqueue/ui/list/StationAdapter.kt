@@ -21,12 +21,12 @@ class StationAdapter(
             binding.tvAddress.text        = station.address
             binding.tvCrowdLevel.text     = CrowdUtils.getLabel(station.crowdLevel)
             binding.tvCrowdLevel.setTextColor(CrowdUtils.getColor(station.crowdLevel))
-            binding.tvActiveUsers.text    = "${station.activeUsers} vehicles"
-            binding.tvWaitTime.text       = "~${station.estimatedWaitMinutes} min wait"
+            binding.tvActiveUsers.text    = "${station.activeUsers}"
+            binding.tvWaitTime.text       = "${station.estimatedWaitMinutes}m"
             binding.tvDistance.text       = if (station.distanceMeters < 1000)
-                "${station.distanceMeters.toInt()} m away"
+                "${station.distanceMeters.toInt()} m"
             else
-                "${"%.1f".format(station.distanceMeters / 1000)} km away"
+                "${"%.1f".format(station.distanceMeters / 1000)} km"
             binding.tvCrowdEmoji.text     = CrowdUtils.getEmoji(station.crowdLevel)
 
             // Crowd indicator bar color
