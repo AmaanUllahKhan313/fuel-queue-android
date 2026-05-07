@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fuel Queue</string>
+    <string name="app_name">CNG LINE</string>
     <string name="crowd_low">QUIET</string>
     <string name="crowd_medium">MODERATE</string>
     <string name="crowd_high">BUSY</string>

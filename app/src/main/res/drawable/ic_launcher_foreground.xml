@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- CNG Pump nozzle -->
+    <path
+        android:pathData="M 35 45 L 42 40 L 42 52 Z"
+        android:fillColor="#FFD700" />
+
+    <!-- Pump hose -->
+    <path
+        android:pathData="M 42 47 Q 55 30 70 35"
+        android:strokeColor="#FF9800"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent" />
+
+    <!-- Pump station body -->
+    <path
+        android:pathData="M 64 32 L 87 32 L 87 77 L 64 77 Z"
+        android:fillColor="#FF9800" />
+
+    <!-- Pump display screen -->
+    <path
+        android:pathData="M 68 36 L 83 36 L 83 48 L 68 48 Z"
+        android:fillColor="#000000" />
+
+    <!-- Display indicator -->
+    <path
+        android:pathData="M 74 42 L 76 42 L 76 44 L 74 44 Z"
+        android:fillColor="#00FF00" />
+
+    <!-- Pump button 1 -->
+    <path
+        android:pathData="M 70 54 L 73 54 L 73 57 L 70 57 Z"
+        android:fillColor="#FFFFFF" />
+
+    <!-- Pump button 2 -->
+    <path
+        android:pathData="M 81 54 L 84 54 L 84 57 L 81 57 Z"
+        android:fillColor="#FFFFFF" />
+
+    <!-- Tank base -->
+    <path
+        android:pathData="M 68 82 L 83 82 L 83 96 L 68 96 Z"
+        android:fillColor="#1565C0" />
+
+    <!-- Gas level line 1 -->
+    <path
+        android:pathData="M 70 85 L 81 85 L 81 86 L 70 86 Z"
+        android:fillColor="#4CAF50" />
+
+    <!-- Gas level line 2 -->
+    <path
+        android:pathData="M 70 89 L 81 89 L 81 90 L 70 90 Z"
+        android:fillColor="#4CAF50" />
+
+    <!-- Gas level line 3 -->
+    <path
+        android:pathData="M 70 93 L 81 93 L 81 94 L 70 94 Z"
+        android:fillColor="#FFC107" />
+
+    <!-- Connection pipe -->
+    <path
+        android:pathData="M 74 80 L 79 80 L 79 82 L 74 82 Z"
+        android:fillColor="#424242" />
+
+    <!-- Decorative accent -->
+    <path
+        android:pathData="M 88 50 Q 95 55 90 65"
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent" />
+
+</vector>
+
+
+
