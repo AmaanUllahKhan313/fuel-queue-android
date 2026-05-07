@@ -234,6 +234,50 @@
                     android:textStyle="bold"
                     android:layout_marginBottom="12dp" />
 
+                <!-- Stock Available Indicator -->
+                <LinearLayout
+                    android:id="@+id/stockAvailableIndicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/stock_available_background"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:id="@+id/tv_stock_emoji"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📦"
+                        android:textSize="28sp"
+                        android:layout_marginEnd="12dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_stock_status_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Vehicles waiting"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_stock_indicator_emoji"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🟢"
+                        android:textSize="24sp"
+                        android:layout_marginStart="12dp" />
+                </LinearLayout>
+
                 <!-- Pumps available -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -312,7 +356,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- Fuel types -->
+                <!-- CNG type -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -336,7 +380,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Fuel Types"
+                            android:text="Fuel Type"
                             android:textColor="@color/text_secondary"
                             android:textSize="12sp" />
 
@@ -344,7 +388,7 @@
                             android:id="@+id/tv_fuel_types"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Petrol, Diesel"
+                            android:text="CNG"
                             android:textColor="@color/text_primary"
                             android:textSize="14sp"
                             android:textStyle="bold" />

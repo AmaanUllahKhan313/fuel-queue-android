@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.fuelqueue.R
 import com.fuelqueue.data.api.RetrofitClient
 import com.fuelqueue.data.model.CrowdStatus
 import com.fuelqueue.databinding.FragmentStationDetailBinding
@@ -114,6 +116,31 @@ class StationDetailFragment : Fragment() {
         // Progress bar (0–10 vehicles max)
         val progress = minOf(status.activeUsers * 10, 100)
         binding.crowdProgressBar.progress = progress
+        
+        // Update stock available indicator
+        updateStockAvailableIndicator(status.activeUsers)
+    }
+    
+    private fun updateStockAvailableIndicator(activeUsers: Int) {
+        val isStockAvailable = activeUsers > 0
+        
+        if (isStockAvailable) {
+            // Stock available - green
+            binding.tvStockStatusLabel.text = "stock available"
+            binding.tvStockStatusLabel.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_green_dark))
+            binding.tvStockIndicatorEmoji.text = "🟢"
+            // Update background to green
+            val greenDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.stock_available_background)
+            binding.stockAvailableIndicator.background = greenDrawable
+        } else {
+            // Stock not available - red
+            binding.tvStockStatusLabel.text = "stock not available"
+            binding.tvStockStatusLabel.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark))
+            binding.tvStockIndicatorEmoji.text = "🔴"
+            // Update background to red
+            val redDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.stock_not_available_background)
+            binding.stockAvailableIndicator.background = redDrawable
+        }
     }
 
     private fun openDirections() {
