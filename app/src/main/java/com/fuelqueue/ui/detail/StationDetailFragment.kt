@@ -1,5 +1,8 @@
 package com.fuelqueue.ui.detail
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +14,14 @@ import com.fuelqueue.data.api.RetrofitClient
 import com.fuelqueue.data.model.CrowdStatus
 import com.fuelqueue.databinding.FragmentStationDetailBinding
 import com.fuelqueue.utils.CrowdUtils
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
+import com.google.android.gms.tasks.CancellationTokenSource
 import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.coroutines.resume
 
 class StationDetailFragment : Fragment() {
 
@@ -21,6 +29,11 @@ class StationDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private var refreshJob: Job? = null
     private var stationId: Long = -1
+    private var stationLatitude: Double = 0.0
+    private var stationLongitude: Double = 0.0
+    private var stationName: String = ""
+
+    private lateinit var fusedClient: FusedLocationProviderClient
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +46,8 @@ class StationDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        fusedClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+
         stationId = arguments?.getLong("stationId") ?: -1
         if (stationId == -1L) {
             Toast.makeText(requireContext(), "Invalid station", Toast.LENGTH_SHORT).show()
@@ -40,6 +55,7 @@ class StationDetailFragment : Fragment() {
         }
 
         binding.btnRefresh.setOnClickListener { loadCrowdStatus() }
+        binding.btnGetDirections.setOnClickListener { openDirections() }
         loadCrowdStatus()
     }
 
@@ -99,6 +115,147 @@ class StationDetailFragment : Fragment() {
         val progress = minOf(status.activeUsers * 10, 100)
         binding.crowdProgressBar.progress = progress
     }
+
+    private fun openDirections() {
+        lifecycleScope.launch {
+            try {
+                // Get user's current location
+                val userLocation = getUserLocation()
+
+                if (userLocation == null) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Could not get your location. Please enable location services and try again.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return@launch
+                }
+
+                val userLat = userLocation.first
+                val userLng = userLocation.second
+
+                // Fetch full station details including coordinates
+                val stationResponse = try {
+                    RetrofitClient.api.getStationById(stationId)
+                } catch (e: Exception) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Could not fetch station details: ${e.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@launch
+                }
+
+                if (stationResponse.isSuccessful && stationResponse.body() != null) {
+                    val station = stationResponse.body()!!
+                    stationLatitude = station.latitude
+                    stationLongitude = station.longitude
+                    stationName = station.name
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Could not fetch station location. Please try again.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@launch
+                }
+
+                // Check if we have valid station coordinates
+                if (stationLatitude == 0.0 || stationLongitude == 0.0) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Station location data not available.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@launch
+                }
+
+                // Open Google Maps with directions
+                launchGoogleMapsDirections(userLat, userLng, stationLatitude, stationLongitude, stationName)
+
+            } catch (e: Exception) {
+                Toast.makeText(
+                    requireContext(),
+                    "Error: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private suspend fun getUserLocation(): Pair<Double, Double>? {
+        return withTimeoutOrNull(8000L) {
+            suspendCancellableCoroutine { continuation ->
+                try {
+                    // Try lastLocation first
+                    fusedClient.lastLocation.addOnSuccessListener { lastLocation ->
+                        if (lastLocation != null && continuation.isActive) {
+                            continuation.resume(Pair(lastLocation.latitude, lastLocation.longitude))
+                        } else {
+                            // Try getCurrentLocation if lastLocation is null
+                            val tokenSource = CancellationTokenSource()
+                            continuation.invokeOnCancellation { tokenSource.cancel() }
+
+                            fusedClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, tokenSource.token)
+                                .addOnSuccessListener { currentLocation ->
+                                    if (currentLocation != null && continuation.isActive) {
+                                        continuation.resume(Pair(currentLocation.latitude, currentLocation.longitude))
+                                    } else if (continuation.isActive) {
+                                        continuation.resume(null)
+                                    }
+                                }
+                                .addOnFailureListener {
+                                    if (continuation.isActive) continuation.resume(null)
+                                }
+                        }
+                    }.addOnFailureListener {
+                    if (continuation.isActive) continuation.resume(null)
+                }
+            } catch (_: Exception) {
+                if (continuation.isActive) continuation.resume(null)
+                }
+            }
+        }
+    }
+
+    private fun launchGoogleMapsDirections(
+        userLat: Double,
+        userLng: Double,
+        destLat: Double,
+        destLng: Double,
+        @Suppress("UNUSED_PARAMETER") destName: String
+    ) {
+        try {
+            // Build the URL with directions from user location to destination
+            // Format: https://www.google.com/maps/dir/?api=1&origin=lat,lng&destination=lat,lng&travelmode=driving
+            val mapsUri = Uri.parse(
+                "https://www.google.com/maps/dir/?api=1&origin=$userLat,$userLng&destination=$destLat,$destLng&travelmode=driving"
+            )
+
+            val intent = Intent(Intent.ACTION_VIEW, mapsUri).apply {
+                setPackage("com.google.android.apps.maps")
+            }
+
+            // Check if Google Maps is installed
+            if (intent.resolveActivity(requireContext().packageManager) != null) {
+                startActivity(intent)
+            } else {
+                // Fallback: open in browser if Google Maps is not installed
+                val browserUri = Uri.parse(
+                    "https://www.google.com/maps/dir/?api=1&origin=$userLat,$userLng&destination=$destLat,$destLng&travelmode=driving"
+                )
+                startActivity(Intent(Intent.ACTION_VIEW, browserUri))
+            }
+        } catch (e: Exception) {
+            Toast.makeText(
+                requireContext(),
+                "Could not open Google Maps: ${e.message}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

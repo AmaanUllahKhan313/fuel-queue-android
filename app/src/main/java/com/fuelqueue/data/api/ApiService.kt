@@ -26,6 +26,9 @@ interface ApiService {
         @Query("radius") radius: Double = 10000.0
     ): Response<List<Station>>
 
+    @GET("api/stations/{id}")
+    suspend fun getStationById(@Path("id") stationId: Long): Response<Station>
+
     @GET("api/stations/{id}/crowd")
     suspend fun getCrowdStatus(@Path("id") stationId: Long): Response<CrowdStatus>
 

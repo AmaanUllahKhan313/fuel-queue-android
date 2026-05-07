@@ -57,6 +57,9 @@
         <argument
             android:name="stationId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_detail_to_map"
+            app:destination="@id/mapFragment" />
     </fragment>
 
 </navigation>

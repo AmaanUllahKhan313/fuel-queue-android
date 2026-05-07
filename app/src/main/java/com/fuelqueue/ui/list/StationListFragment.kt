@@ -161,9 +161,11 @@ class StationListFragment : Fragment() {
                 if (response.isSuccessful) {
                     val baseStations = response.body() ?: emptyList()
                     val liveStations = enrichWithLiveCrowd(baseStations)
+                    // Sort by distance: nearest first, farthest last
+                    val sortedStations = liveStations.sortedBy { it.distanceMeters }
                     // Submit fresh copies so RecyclerView always rebinds changed fields.
-                    adapter.submitList(liveStations.map { it.copy() })
-                    binding.tvEmpty.visibility = if (liveStations.isEmpty()) View.VISIBLE else View.GONE
+                    adapter.submitList(sortedStations.map { it.copy() })
+                    binding.tvEmpty.visibility = if (sortedStations.isEmpty()) View.VISIBLE else View.GONE
                 } else {
                     Toast.makeText(requireContext(), "Failed to load stations", Toast.LENGTH_SHORT).show()
                 }

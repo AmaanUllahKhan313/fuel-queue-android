@@ -192,7 +192,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 if (response.isSuccessful) {
                     val stations = response.body()
                     Log.d("MapFragment", "loadStations: Got ${stations?.size ?: 0} stations")
-                    stations?.let { updateMarkers(it) }
+                    // Sort stations by distance: nearest first, farthest last
+                    stations?.let { updateMarkers(it.sortedBy { station -> station.distanceMeters }) }
                 } else {
                     Log.e("MapFragment", "loadStations: API error ${response.code()}")
                     Toast.makeText(requireContext(), "Failed to load stations", Toast.LENGTH_SHORT).show()
