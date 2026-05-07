@@ -48,6 +48,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private var latestUserLocation: LatLng? = null
     private var locationCallback: LocationCallback? = null
     private var lastNearbyRefreshAt = 0L
+    private var isLoadingStations = false
 
     // Default center: Pimpri-Chinchwad, Pune
     private val defaultLat = 18.6298
@@ -131,6 +132,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun loadStations(forceRecenter: Boolean = false) {
+        // Prevent concurrent loads
+        if (isLoadingStations) return
+        isLoadingStations = true
+        
         binding.progressMap.visibility = View.VISIBLE
 
         loadJob?.cancel()
@@ -167,6 +172,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 Toast.makeText(requireContext(), "Network error: ${e.message}", Toast.LENGTH_SHORT).show()
             } finally {
                 binding.progressMap.visibility = View.GONE
+                isLoadingStations = false
             }
         }
     }
@@ -204,11 +210,13 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             enableMyLocationLayer()
             startMapLocationUpdates()
         }
-        // Auto-refresh every 30 seconds
+        // Auto-refresh every 40 seconds (reduced from 30s to avoid ANR)
         refreshJob = lifecycleScope.launch {
             while (isActive) {
-                delay(30_000)
-                loadStations()
+                delay(40_000)
+                if (!isLoadingStations) {
+                    loadStations()
+                }
             }
         }
     }
@@ -224,42 +232,55 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         latestUserLocation?.let { return it }
         if (!hasLocationPermission()) return null
 
-        return suspendCancellableCoroutine { continuation ->
-            try {
-                val tokenSource = CancellationTokenSource()
-                continuation.invokeOnCancellation { tokenSource.cancel() }
+        // Add timeout to prevent indefinite hanging
+        return withTimeoutOrNull(5000L) {
+            suspendCancellableCoroutine { continuation ->
+                var resumed = false
+                try {
+                    val tokenSource = CancellationTokenSource()
+                    continuation.invokeOnCancellation { tokenSource.cancel() }
 
-                // Try getCurrentLocation first with HIGH_ACCURACY for immediate result
-                fusedClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, tokenSource.token)
-                    .addOnSuccessListener { currentLocation ->
-                        if (continuation.isActive) {
-                            if (currentLocation != null) {
+                    // Try getCurrentLocation first with HIGH_ACCURACY for immediate result
+                    fusedClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, tokenSource.token)
+                        .addOnSuccessListener { currentLocation ->
+                            if (currentLocation != null && !resumed) {
+                                resumed = true
                                 val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
                                 latestUserLocation = latLng
-                                continuation.resume(latLng)
-                            } else {
+                                if (continuation.isActive) continuation.resume(latLng)
+                            } else if (currentLocation == null && !resumed) {
                                 // Fallback to lastLocation if getCurrentLocation returns null
                                 fusedClient.lastLocation
                                     .addOnSuccessListener { lastLocation ->
-                                        if (continuation.isActive) {
+                                        if (!resumed) {
+                                            resumed = true
                                             val latLng = lastLocation?.let { LatLng(it.latitude, it.longitude) }
                                             if (latLng != null) {
                                                 latestUserLocation = latLng
                                             }
-                                            continuation.resume(latLng)
+                                            if (continuation.isActive) continuation.resume(latLng)
                                         }
                                     }
                                     .addOnFailureListener {
-                                        if (continuation.isActive) continuation.resume(null)
+                                        if (!resumed) {
+                                            resumed = true
+                                            if (continuation.isActive) continuation.resume(null)
+                                        }
                                     }
                             }
                         }
-                    }
-                    .addOnFailureListener {
+                        .addOnFailureListener {
+                            if (!resumed) {
+                                resumed = true
+                                if (continuation.isActive) continuation.resume(null)
+                            }
+                        }
+                } catch (_: SecurityException) {
+                    if (!resumed) {
+                        resumed = true
                         if (continuation.isActive) continuation.resume(null)
                     }
-            } catch (_: SecurityException) {
-                if (continuation.isActive) continuation.resume(null)
+                }
             }
         }
     }

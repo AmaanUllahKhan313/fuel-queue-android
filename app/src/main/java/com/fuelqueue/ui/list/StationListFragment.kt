@@ -34,6 +34,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withTimeoutOrNull
 import java.util.Locale
 import kotlin.coroutines.resume
 
@@ -49,6 +50,7 @@ class StationListFragment : Fragment() {
     private var latestUserLocation: QueryLocation? = null
     private var locationCallback: LocationCallback? = null
     private var lastNearbyRefreshAt = 0L
+    private var isLoadingStations = false
 
     private val defaultLat = 18.6298
     private val defaultLng = 73.7997
@@ -109,11 +111,13 @@ class StationListFragment : Fragment() {
         if (hasLocationPermission()) {
             startListLocationUpdates()
         }
-        // Auto-refresh every 25 seconds to keep crowd data current
+        // Auto-refresh every 40 seconds to keep crowd data current (reduced from 25s to avoid ANR)
         refreshJob = lifecycleScope.launch {
             while (isActive) {
-                delay(25_000)
-                loadStations()
+                delay(40_000)
+                if (!isLoadingStations) {
+                    loadStations()
+                }
             }
         }
     }
@@ -126,6 +130,10 @@ class StationListFragment : Fragment() {
     }
 
     private fun loadStations() {
+        // Prevent concurrent loads
+        if (isLoadingStations) return
+        isLoadingStations = true
+        
         binding.progressBar.visibility = View.VISIBLE
 
         loadJob?.cancel()
@@ -164,6 +172,7 @@ class StationListFragment : Fragment() {
             } finally {
                 binding.progressBar.visibility   = View.GONE
                 binding.swipeRefresh.isRefreshing = false
+                isLoadingStations = false
             }
         }
     }
@@ -195,48 +204,64 @@ class StationListFragment : Fragment() {
         latestUserLocation?.let { return it }
         if (!hasLocationPermission()) return null
 
-        return suspendCancellableCoroutine { continuation ->
-            try {
-                fusedClient.lastLocation
-                    .addOnSuccessListener { lastLocation ->
-                        if (lastLocation != null) {
-                            if (continuation.isActive) {
-                                continuation.resume(
-                                    QueryLocation(lastLocation.latitude, lastLocation.longitude).also {
-                                        latestUserLocation = it
-                                    }
-                                )
-                            }
-                            return@addOnSuccessListener
-                        }
-
-                        val tokenSource = CancellationTokenSource()
-                        continuation.invokeOnCancellation { tokenSource.cancel() }
-
-                        fusedClient.getCurrentLocation(
-                            Priority.PRIORITY_HIGH_ACCURACY,
-                            tokenSource.token
-                        )
-                            .addOnSuccessListener { currentLocation ->
+        // Add timeout to prevent indefinite hanging
+        return withTimeoutOrNull(5000L) {
+            suspendCancellableCoroutine { continuation ->
+                var resumed = false
+                try {
+                    fusedClient.lastLocation
+                        .addOnSuccessListener { lastLocation ->
+                            if (lastLocation != null && !resumed) {
+                                resumed = true
                                 if (continuation.isActive) {
                                     continuation.resume(
-                                        currentLocation?.let {
-                                            QueryLocation(it.latitude, it.longitude).also { resolved ->
-                                                latestUserLocation = resolved
-                                            }
+                                        QueryLocation(lastLocation.latitude, lastLocation.longitude).also {
+                                            latestUserLocation = it
                                         }
                                     )
                                 }
+                            } else if (lastLocation == null && !resumed) {
+                                val tokenSource = CancellationTokenSource()
+                                continuation.invokeOnCancellation { tokenSource.cancel() }
+
+                                fusedClient.getCurrentLocation(
+                                    Priority.PRIORITY_HIGH_ACCURACY,
+                                    tokenSource.token
+                                )
+                                    .addOnSuccessListener { currentLocation ->
+                                        if (!resumed) {
+                                            resumed = true
+                                            if (continuation.isActive) {
+                                                continuation.resume(
+                                                    currentLocation?.let {
+                                                        QueryLocation(it.latitude, it.longitude).also { resolved ->
+                                                            latestUserLocation = resolved
+                                                        }
+                                                    }
+                                                )
+                                            }
+                                        }
+                                    }
+                                    .addOnFailureListener {
+                                        if (!resumed) {
+                                            resumed = true
+                                            if (continuation.isActive) continuation.resume(null)
+                                        }
+                                    }
                             }
-                            .addOnFailureListener {
+                        }
+                        .addOnFailureListener {
+                            if (!resumed) {
+                                resumed = true
                                 if (continuation.isActive) continuation.resume(null)
                             }
-                    }
-                    .addOnFailureListener {
+                        }
+                } catch (_: SecurityException) {
+                    if (!resumed) {
+                        resumed = true
                         if (continuation.isActive) continuation.resume(null)
                     }
-            } catch (_: SecurityException) {
-                if (continuation.isActive) continuation.resume(null)
+                }
             }
         }
     }
