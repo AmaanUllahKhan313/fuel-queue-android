@@ -204,8 +204,8 @@ class StationListFragment : Fragment() {
         latestUserLocation?.let { return it }
         if (!hasLocationPermission()) return null
 
-        // Add timeout to prevent indefinite hanging
-        return withTimeoutOrNull(5000L) {
+        // Use 10-second timeout for location resolution
+        return withTimeoutOrNull(10000L) {
             suspendCancellableCoroutine { continuation ->
                 var resumed = false
                 try {
@@ -293,8 +293,10 @@ class StationListFragment : Fragment() {
         if (!hasLocationPermission()) return
         if (locationCallback != null) return
 
-        val request = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 10_000L)
-            .setMinUpdateIntervalMillis(5_000L)
+        // Request frequent updates to capture location quickly
+        val request = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 2_000L)
+            .setMinUpdateIntervalMillis(1_000L)
+            .setMaxUpdateDelayMillis(5_000L)
             .build()
 
         locationCallback = object : LocationCallback() {

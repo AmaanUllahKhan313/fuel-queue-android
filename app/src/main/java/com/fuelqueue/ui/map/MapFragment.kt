@@ -42,6 +42,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private var refreshJob: Job? = null
     private var loadJob: Job? = null
     private val stationMarkers = mutableMapOf<Long, Marker>()
+    private var userLocationMarker: Marker? = null
     private lateinit var fusedClient: FusedLocationProviderClient
     private var hasCenteredOnUser = false
     private var warnedFallback = false
@@ -84,31 +85,37 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        
+        Log.d("MapFragment", "onViewCreated: Initializing FusedLocationProviderClient")
         fusedClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         val mapFragment = childFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
+        Log.d("MapFragment", "onViewCreated: Getting map asynchronously")
         mapFragment.getMapAsync(this)
 
-        binding.fabRefresh.setOnClickListener { loadStations(forceRecenter = true) }
+        binding.fabRefresh.setOnClickListener { 
+            Log.d("MapFragment", "onViewCreated: Refresh button clicked")
+            loadStations(forceRecenter = true) 
+        }
 
         binding.btnViewList.setOnClickListener {
+            Log.d("MapFragment", "onViewCreated: View list button clicked")
             findNavController().navigate(R.id.action_map_to_list)
         }
     }
 
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
-        Log.d("MapFragment", "Map is ready, permission status: ${hasLocationPermission()}")
+        Log.d("MapFragment", "onMapReady: Map is ready, permission status: ${hasLocationPermission()}")
 
         // Enable my location if permission granted
         if (hasLocationPermission()) {
-            Log.d("MapFragment", "Enabling my location layer and starting location updates")
+            Log.d("MapFragment", "onMapReady: Enabling my location layer and starting location updates")
             enableMyLocationLayer()
             startMapLocationUpdates()
         } else {
-            Log.w("MapFragment", "Location permission not granted, requesting...")
+            Log.w("MapFragment", "onMapReady: Location permission not granted, requesting...")
             requestLocationPermission()
         }
 
@@ -116,6 +123,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         map.uiSettings.isCompassEnabled      = true
 
         // Initial fallback camera until user location resolves.
+        Log.d("MapFragment", "onMapReady: Setting initial camera to fallback location: $defaultLat, $defaultLng")
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(
             LatLng(defaultLat, defaultLng), 13f
         ))
@@ -123,19 +131,25 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         // Tap marker → open detail
         map.setOnMarkerClickListener { marker ->
             val stationId = marker.tag as? Long ?: return@setOnMarkerClickListener false
+            Log.d("MapFragment", "onMapReady: Marker clicked for station $stationId")
             val action = MapFragmentDirections.actionMapToDetail(stationId)
             findNavController().navigate(action)
             true
         }
 
+        Log.d("MapFragment", "onMapReady: Loading initial stations")
         loadStations(forceRecenter = true)
     }
 
     private fun loadStations(forceRecenter: Boolean = false) {
         // Prevent concurrent loads
-        if (isLoadingStations) return
+        if (isLoadingStations) {
+            Log.d("MapFragment", "loadStations: Already loading, skipping")
+            return
+        }
         isLoadingStations = true
         
+        Log.d("MapFragment", "loadStations: Starting (forceRecenter=$forceRecenter)")
         binding.progressMap.visibility = View.VISIBLE
 
         loadJob?.cancel()
@@ -143,6 +157,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             try {
                 val userLocation = resolveUserLocation()
                 val query = userLocation ?: LatLng(defaultLat, defaultLng)
+                
+                if (userLocation != null) {
+                    Log.d("MapFragment", "loadStations: Using user location: ${userLocation.latitude}, ${userLocation.longitude}")
+                } else {
+                    Log.d("MapFragment", "loadStations: Using fallback location: ${query.latitude}, ${query.longitude}")
+                }
 
                 if (userLocation == null && !warnedFallback) {
                     warnedFallback = true
@@ -154,21 +174,25 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 }
 
                 if (userLocation != null && (!hasCenteredOnUser || forceRecenter)) {
+                    Log.d("MapFragment", "loadStations: Animating camera to user location")
                     googleMap?.animateCamera(
                         CameraUpdateFactory.newLatLngZoom(userLocation, 14f)
                     )
                     hasCenteredOnUser = true
                 }
 
+                Log.d("MapFragment", "loadStations: Fetching nearby stations at ${query.latitude}, ${query.longitude}")
                 val response = RetrofitClient.api.getNearbyStations(query.latitude, query.longitude, 15000.0)
                 if (response.isSuccessful) {
-                    response.body()?.let { stations ->
-                        updateMarkers(stations)
-                    }
+                    val stations = response.body()
+                    Log.d("MapFragment", "loadStations: Got ${stations?.size ?: 0} stations")
+                    stations?.let { updateMarkers(it) }
                 } else {
+                    Log.e("MapFragment", "loadStations: API error ${response.code()}")
                     Toast.makeText(requireContext(), "Failed to load stations", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
+                Log.e("MapFragment", "loadStations: Exception: ${e.message}", e)
                 Toast.makeText(requireContext(), "Network error: ${e.message}", Toast.LENGTH_SHORT).show()
             } finally {
                 binding.progressMap.visibility = View.GONE
@@ -180,7 +204,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private fun updateMarkers(stations: List<Station>) {
         val map = googleMap ?: return
 
-        // Remove old markers
+        // Remove old station markers
         stationMarkers.values.forEach { it.remove() }
         stationMarkers.clear()
 
@@ -201,6 +225,18 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             )
             marker?.tag = station.stationId
             if (marker != null) stationMarkers[station.stationId] = marker
+        }
+
+        // Update user location marker
+        latestUserLocation?.let { userLoc ->
+            userLocationMarker?.remove()
+            userLocationMarker = map.addMarker(
+                MarkerOptions()
+                    .position(userLoc)
+                    .title("Your Location")
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+            )
+            Log.d("MapFragment", "updateMarkers: Added user location marker at $userLoc")
         }
     }
 
@@ -232,36 +268,51 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         latestUserLocation?.let { return it }
         if (!hasLocationPermission()) return null
 
-        // Add timeout to prevent indefinite hanging
-        return withTimeoutOrNull(5000L) {
+        Log.d("MapFragment", "resolveUserLocation: Starting location resolution")
+
+        // Use longer timeout for initial location request - location providers need time for first fix
+        return withTimeoutOrNull(10000L) {
             suspendCancellableCoroutine { continuation ->
                 var resumed = false
                 try {
                     val tokenSource = CancellationTokenSource()
-                    continuation.invokeOnCancellation { tokenSource.cancel() }
+                    continuation.invokeOnCancellation {
+                        Log.d("MapFragment", "resolveUserLocation: Cancellation requested")
+                        tokenSource.cancel()
+                    }
+
+                    Log.d("MapFragment", "resolveUserLocation: Calling getCurrentLocation")
 
                     // Try getCurrentLocation first with HIGH_ACCURACY for immediate result
                     fusedClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, tokenSource.token)
                         .addOnSuccessListener { currentLocation ->
+                            Log.d("MapFragment", "resolveUserLocation: getCurrentLocation callback, location=$currentLocation")
                             if (currentLocation != null && !resumed) {
                                 resumed = true
                                 val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
+                                Log.d("MapFragment", "resolveUserLocation: Got current location: ${latLng.latitude}, ${latLng.longitude}")
                                 latestUserLocation = latLng
                                 if (continuation.isActive) continuation.resume(latLng)
                             } else if (currentLocation == null && !resumed) {
+                                Log.d("MapFragment", "resolveUserLocation: getCurrentLocation returned null, trying lastLocation")
                                 // Fallback to lastLocation if getCurrentLocation returns null
                                 fusedClient.lastLocation
                                     .addOnSuccessListener { lastLocation ->
+                                        Log.d("MapFragment", "resolveUserLocation: lastLocation callback, location=$lastLocation")
                                         if (!resumed) {
                                             resumed = true
-                                            val latLng = lastLocation?.let { LatLng(it.latitude, it.longitude) }
+                                            val latLng = lastLocation?.let {
+                                                Log.d("MapFragment", "resolveUserLocation: Got last location: ${it.latitude}, ${it.longitude}")
+                                                LatLng(it.latitude, it.longitude)
+                                            }
                                             if (latLng != null) {
                                                 latestUserLocation = latLng
                                             }
                                             if (continuation.isActive) continuation.resume(latLng)
                                         }
                                     }
-                                    .addOnFailureListener {
+                                    .addOnFailureListener { e ->
+                                        Log.d("MapFragment", "resolveUserLocation: lastLocation failed: ${e.message}")
                                         if (!resumed) {
                                             resumed = true
                                             if (continuation.isActive) continuation.resume(null)
@@ -269,18 +320,24 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                                     }
                             }
                         }
-                        .addOnFailureListener {
+                        .addOnFailureListener { e ->
+                            Log.d("MapFragment", "resolveUserLocation: getCurrentLocation failed: ${e.message}")
                             if (!resumed) {
                                 resumed = true
                                 if (continuation.isActive) continuation.resume(null)
                             }
                         }
-                } catch (_: SecurityException) {
+                } catch (e: SecurityException) {
+                    Log.e("MapFragment", "resolveUserLocation: SecurityException: ${e.message}")
                     if (!resumed) {
                         resumed = true
                         if (continuation.isActive) continuation.resume(null)
                     }
                 }
+            }
+        }.also { result ->
+            if (result == null) {
+                Log.w("MapFragment", "resolveUserLocation: Timed out or failed, returning null")
             }
         }
     }
@@ -313,44 +370,51 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     @SuppressLint("MissingPermission")
     private fun startMapLocationUpdates() {
-        if (!hasLocationPermission()) return
+        if (!hasLocationPermission()) {
+            Log.w("MapFragment", "startMapLocationUpdates: No location permission")
+            return
+        }
         if (locationCallback != null) {
-            Log.d("MapFragment", "Location updates already running")
+            Log.d("MapFragment", "startMapLocationUpdates: Location updates already running")
             return
         }
         
-        Log.d("MapFragment", "Starting location updates with HIGH_ACCURACY")
+        Log.d("MapFragment", "startMapLocationUpdates: Starting location updates with HIGH_ACCURACY")
 
-        val request = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 5_000L)
-            .setMinUpdateIntervalMillis(2_000L)
-            .setMaxUpdateDelayMillis(10_000L)
+        // Request frequent updates to capture location quickly
+        val request = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 2_000L)
+            .setMinUpdateIntervalMillis(1_000L)
+            .setMaxUpdateDelayMillis(5_000L)
             .build()
 
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(result: LocationResult) {
                 val location = result.lastLocation ?: return
                 val newLocation = LatLng(location.latitude, location.longitude)
-                Log.d("MapFragment", "Received location: ${newLocation.latitude}, ${newLocation.longitude}, accuracy: ${location.accuracy}m")
-                
+                Log.d("MapFragment", "onLocationResult: Got location ${newLocation.latitude}, ${newLocation.longitude}, accuracy: ${location.accuracy}m")
+
                 val oldLocation = latestUserLocation
                 latestUserLocation = newLocation
 
                 // Ensure my location layer is enabled once we have location data
                 if (!hasLocationPermission()) return@onLocationResult
                 if (googleMap?.isMyLocationEnabled != true) {
-                    Log.d("MapFragment", "Re-enabling my location layer now that we have location data")
+                    Log.d("MapFragment", "onLocationResult: Re-enabling my location layer")
                     googleMap?.isMyLocationEnabled = true
                 }
 
+                // Center camera on first location or if moved significantly
                 if (!hasCenteredOnUser) {
-                    Log.d("MapFragment", "Centering camera on user location")
+                    Log.d("MapFragment", "onLocationResult: Centering camera on user location (first time)")
                     googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(newLocation, 14f))
                     hasCenteredOnUser = true
                 }
 
+                // Trigger station reload if location changed significantly
                 val shouldRefreshByDistance = oldLocation == null || movedMoreThanMeters(oldLocation, newLocation, 200f)
                 val now = System.currentTimeMillis()
                 if (shouldRefreshByDistance || now - lastNearbyRefreshAt >= 15_000L) {
+                    Log.d("MapFragment", "onLocationResult: Triggering station reload (distance=$shouldRefreshByDistance, time=${now - lastNearbyRefreshAt}ms)")
                     lastNearbyRefreshAt = now
                     loadStations()
                 }
@@ -359,9 +423,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         try {
             fusedClient.requestLocationUpdates(request, locationCallback!!, Looper.getMainLooper())
-            Log.d("MapFragment", "Location update request sent successfully")
+            Log.d("MapFragment", "startMapLocationUpdates: Location update request sent successfully")
         } catch (e: SecurityException) {
-            Log.e("MapFragment", "Security exception requesting location: ${e.message}")
+            Log.e("MapFragment", "startMapLocationUpdates: Security exception: ${e.message}")
         }
     }
 
