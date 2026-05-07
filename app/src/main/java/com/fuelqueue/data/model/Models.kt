@@ -1,16 +1,20 @@
 package com.fuelqueue.data.model
 
 data class Station(
-    val stationId: Long,
+    val stationId: Long = 0,
+    val id: Long = 0,
     val name: String,
     val address: String,
     val latitude: Double,
     val longitude: Double,
-    val distanceMeters: Double,
-    val crowdLevel: String,       // "LOW" | "MEDIUM" | "HIGH"
-    val activeUsers: Int,
-    val estimatedWaitMinutes: Int,
-    val updatedAt: Long = 0L
+    val distanceMeters: Double = 0.0,
+    val crowdLevel: String = "",       // "LOW" | "MEDIUM" | "HIGH"
+    val activeUsers: Int = 0,
+    val estimatedWaitMinutes: Int = 0,
+    val updatedAt: Long = 0L,
+    val geofenceRadiusMeters: Double = 0.0,
+    val active: Boolean = true,
+    val live: Boolean = false   // Live station indicator from backend
 )
 
 data class CrowdStatus(

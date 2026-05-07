@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -88,11 +89,37 @@ class StationDetailFragment : Fragment() {
                 } else {
                     Toast.makeText(requireContext(), "Failed to load crowd data", Toast.LENGTH_SHORT).show()
                 }
+
+                // Also fetch station details to get live status
+                fetchStationDetailsForLiveStatus()
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Network error: ${e.message}", Toast.LENGTH_SHORT).show()
             } finally {
                 binding.progressBar.visibility = View.GONE
             }
+        }
+    }
+
+    private fun fetchStationDetailsForLiveStatus() {
+        lifecycleScope.launch {
+            try {
+                val response = RetrofitClient.api.getStationById(stationId)
+                if (response.isSuccessful && response.body() != null) {
+                    val station = response.body()!!
+                    updateLiveIndicator(station.live)
+                }
+            } catch (e: Exception) {
+                // Silent fail - live indicator is not critical
+                Log.d("StationDetail", "Failed to fetch station details for live status: ${e.message}")
+            }
+        }
+    }
+
+    private fun updateLiveIndicator(isLive: Boolean) {
+        if (isLive) {
+            binding.cardLiveIndicator.visibility = View.VISIBLE
+        } else {
+            binding.cardLiveIndicator.visibility = View.GONE
         }
     }
 
