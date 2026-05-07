@@ -200,69 +200,61 @@ class StationListFragment : Fragment() {
         }.awaitAll()
     }
 
+    @SuppressLint("MissingPermission")
     private suspend fun resolveUserLocation(): QueryLocation? {
-        latestUserLocation?.let { return it }
+        if (latestUserLocation != null) {
+            return latestUserLocation
+        }
+        
         if (!hasLocationPermission()) return null
 
-        // Use 10-second timeout for location resolution
-        return withTimeoutOrNull(10000L) {
-            suspendCancellableCoroutine { continuation ->
-                var resumed = false
+        return try {
+            // Try lastLocation first - this is usually available immediately
+            val lastLoc = suspendCancellableCoroutine<Location?> { continuation ->
                 try {
-                    fusedClient.lastLocation
-                        .addOnSuccessListener { lastLocation ->
-                            if (lastLocation != null && !resumed) {
-                                resumed = true
-                                if (continuation.isActive) {
-                                    continuation.resume(
-                                        QueryLocation(lastLocation.latitude, lastLocation.longitude).also {
-                                            latestUserLocation = it
-                                        }
-                                    )
-                                }
-                            } else if (lastLocation == null && !resumed) {
-                                val tokenSource = CancellationTokenSource()
-                                continuation.invokeOnCancellation { tokenSource.cancel() }
+                    fusedClient.lastLocation.addOnSuccessListener { location ->
+                        if (continuation.isActive) continuation.resume(location)
+                    }.addOnFailureListener { _ ->
+                        if (continuation.isActive) continuation.resume(null)
+                    }
+                } catch (_: Exception) {
+                    if (continuation.isActive) continuation.resume(null)
+                }
+            }
 
-                                fusedClient.getCurrentLocation(
-                                    Priority.PRIORITY_HIGH_ACCURACY,
-                                    tokenSource.token
-                                )
-                                    .addOnSuccessListener { currentLocation ->
-                                        if (!resumed) {
-                                            resumed = true
-                                            if (continuation.isActive) {
-                                                continuation.resume(
-                                                    currentLocation?.let {
-                                                        QueryLocation(it.latitude, it.longitude).also { resolved ->
-                                                            latestUserLocation = resolved
-                                                        }
-                                                    }
-                                                )
-                                            }
-                                        }
-                                    }
-                                    .addOnFailureListener {
-                                        if (!resumed) {
-                                            resumed = true
-                                            if (continuation.isActive) continuation.resume(null)
-                                        }
-                                    }
+            if (lastLoc != null) {
+                val result = QueryLocation(lastLoc.latitude, lastLoc.longitude)
+                latestUserLocation = result
+                return result
+            }
+
+            // If lastLocation didn't work, try getCurrentLocation with timeout
+            withTimeoutOrNull(8000L) {
+                suspendCancellableCoroutine<QueryLocation?> { continuation ->
+                    val tokenSource = CancellationTokenSource()
+                    continuation.invokeOnCancellation { tokenSource.cancel() }
+
+                    try {
+                        fusedClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, tokenSource.token)
+                            .addOnSuccessListener { currentLoc ->
+                                if (currentLoc != null && continuation.isActive) {
+                                    val result = QueryLocation(currentLoc.latitude, currentLoc.longitude)
+                                    latestUserLocation = result
+                                    continuation.resume(result)
+                                } else if (continuation.isActive) {
+                                    continuation.resume(null)
+                                }
                             }
-                        }
-                        .addOnFailureListener {
-                            if (!resumed) {
-                                resumed = true
+                            .addOnFailureListener { _ ->
                                 if (continuation.isActive) continuation.resume(null)
                             }
-                        }
-                } catch (_: SecurityException) {
-                    if (!resumed) {
-                        resumed = true
+                    } catch (_: Exception) {
                         if (continuation.isActive) continuation.resume(null)
                     }
                 }
             }
+        } catch (_: Exception) {
+            null
         }
     }
 

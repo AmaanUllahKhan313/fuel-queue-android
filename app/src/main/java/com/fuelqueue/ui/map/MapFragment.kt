@@ -61,7 +61,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val granted = permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true ||
                 permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true
 
+        Log.d("MapFragment", "locationPermissionLauncher: Permission result - granted=$granted")
+
         if (granted) {
+            Log.d("MapFragment", "locationPermissionLauncher: Permission granted, enabling location and loading stations")
+            // Clear any cached location to force fresh resolution
+            latestUserLocation = null
             enableMyLocationLayer()
             startMapLocationUpdates()
             loadStations(forceRecenter = true)
@@ -71,6 +76,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 "Location permission is required to show nearby stations.",
                 Toast.LENGTH_LONG
             ).show()
+            Log.d("MapFragment", "locationPermissionLauncher: Permission denied, loading with fallback")
             loadStations(forceRecenter = false)
         }
     }
@@ -109,16 +115,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         googleMap = map
         Log.d("MapFragment", "onMapReady: Map is ready, permission status: ${hasLocationPermission()}")
 
-        // Enable my location if permission granted
-        if (hasLocationPermission()) {
-            Log.d("MapFragment", "onMapReady: Enabling my location layer and starting location updates")
-            enableMyLocationLayer()
-            startMapLocationUpdates()
-        } else {
-            Log.w("MapFragment", "onMapReady: Location permission not granted, requesting...")
-            requestLocationPermission()
-        }
-
         map.uiSettings.isZoomControlsEnabled = true
         map.uiSettings.isCompassEnabled      = true
 
@@ -137,8 +133,18 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             true
         }
 
-        Log.d("MapFragment", "onMapReady: Loading initial stations")
-        loadStations(forceRecenter = true)
+        // Enable my location if permission granted
+        if (hasLocationPermission()) {
+            Log.d("MapFragment", "onMapReady: Permission granted, enabling location layer and starting updates")
+            enableMyLocationLayer()
+            startMapLocationUpdates()
+            // Load stations immediately, location updates will refine as they arrive
+            Log.d("MapFragment", "onMapReady: Loading initial stations with permission")
+            loadStations(forceRecenter = true)
+        } else {
+            Log.w("MapFragment", "onMapReady: Location permission not granted, requesting...")
+            requestLocationPermission()
+        }
     }
 
     private fun loadStations(forceRecenter: Boolean = false) {
@@ -242,10 +248,16 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onResume() {
         super.onResume()
+        Log.d("MapFragment", "onResume: Resuming map fragment")
+
         if (hasLocationPermission()) {
+            Log.d("MapFragment", "onResume: Permission granted, enabling location layer")
             enableMyLocationLayer()
+            // Restart location updates in case they were stopped
+            stopMapLocationUpdates()
             startMapLocationUpdates()
         }
+
         // Auto-refresh every 40 seconds (reduced from 30s to avoid ANR)
         refreshJob = lifecycleScope.launch {
             while (isActive) {
@@ -264,81 +276,91 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         stopMapLocationUpdates()
     }
 
+    @SuppressLint("MissingPermission")
     private suspend fun resolveUserLocation(): LatLng? {
-        latestUserLocation?.let { return it }
-        if (!hasLocationPermission()) return null
+        if (latestUserLocation != null) {
+            Log.d("MapFragment", "resolveUserLocation: Returning cached location: $latestUserLocation")
+            return latestUserLocation
+        }
+        
+        if (!hasLocationPermission()) {
+            Log.d("MapFragment", "resolveUserLocation: No location permission")
+            return null
+        }
 
-        Log.d("MapFragment", "resolveUserLocation: Starting location resolution")
-
-        // Use longer timeout for initial location request - location providers need time for first fix
-        return withTimeoutOrNull(10000L) {
-            suspendCancellableCoroutine { continuation ->
-                var resumed = false
+        Log.d("MapFragment", "resolveUserLocation: Attempting to get user location")
+        
+        return try {
+            // Try lastLocation first - this is usually available immediately
+            Log.d("MapFragment", "resolveUserLocation: Trying lastLocation...")
+            val lastLoc = suspendCancellableCoroutine<Location?> { continuation ->
                 try {
+                    val startTime = System.currentTimeMillis()
+                    fusedClient.lastLocation.addOnSuccessListener { location ->
+                        val elapsed = System.currentTimeMillis() - startTime
+                        Log.d("MapFragment", "resolveUserLocation: lastLocation returned after ${elapsed}ms: $location")
+                        if (continuation.isActive) continuation.resume(location)
+                    }.addOnFailureListener { e ->
+                        Log.d("MapFragment", "resolveUserLocation: lastLocation failed: ${e.message}")
+                        if (continuation.isActive) continuation.resume(null)
+                    }
+                } catch (e: Exception) {
+                    Log.e("MapFragment", "resolveUserLocation: Exception in lastLocation: ${e.message}")
+                    if (continuation.isActive) continuation.resume(null)
+                }
+            }
+
+            if (lastLoc != null) {
+                val result = LatLng(lastLoc.latitude, lastLoc.longitude)
+                latestUserLocation = result
+                Log.d("MapFragment", "resolveUserLocation: Success with lastLocation: $result (lat=${result.latitude}, lng=${result.longitude})")
+                return result
+            }
+
+            Log.d("MapFragment", "resolveUserLocation: lastLocation was null, trying getCurrentLocation with 6s timeout...")
+            
+            // If lastLocation didn't work, try getCurrentLocation with shorter timeout
+            withTimeoutOrNull(6000L) {
+                suspendCancellableCoroutine<LatLng?> { continuation ->
                     val tokenSource = CancellationTokenSource()
-                    continuation.invokeOnCancellation {
+                    continuation.invokeOnCancellation { 
                         Log.d("MapFragment", "resolveUserLocation: Cancellation requested")
-                        tokenSource.cancel()
+                        tokenSource.cancel() 
                     }
 
-                    Log.d("MapFragment", "resolveUserLocation: Calling getCurrentLocation")
-
-                    // Try getCurrentLocation first with HIGH_ACCURACY for immediate result
-                    fusedClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, tokenSource.token)
-                        .addOnSuccessListener { currentLocation ->
-                            Log.d("MapFragment", "resolveUserLocation: getCurrentLocation callback, location=$currentLocation")
-                            if (currentLocation != null && !resumed) {
-                                resumed = true
-                                val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
-                                Log.d("MapFragment", "resolveUserLocation: Got current location: ${latLng.latitude}, ${latLng.longitude}")
-                                latestUserLocation = latLng
-                                if (continuation.isActive) continuation.resume(latLng)
-                            } else if (currentLocation == null && !resumed) {
-                                Log.d("MapFragment", "resolveUserLocation: getCurrentLocation returned null, trying lastLocation")
-                                // Fallback to lastLocation if getCurrentLocation returns null
-                                fusedClient.lastLocation
-                                    .addOnSuccessListener { lastLocation ->
-                                        Log.d("MapFragment", "resolveUserLocation: lastLocation callback, location=$lastLocation")
-                                        if (!resumed) {
-                                            resumed = true
-                                            val latLng = lastLocation?.let {
-                                                Log.d("MapFragment", "resolveUserLocation: Got last location: ${it.latitude}, ${it.longitude}")
-                                                LatLng(it.latitude, it.longitude)
-                                            }
-                                            if (latLng != null) {
-                                                latestUserLocation = latLng
-                                            }
-                                            if (continuation.isActive) continuation.resume(latLng)
-                                        }
-                                    }
-                                    .addOnFailureListener { e ->
-                                        Log.d("MapFragment", "resolveUserLocation: lastLocation failed: ${e.message}")
-                                        if (!resumed) {
-                                            resumed = true
-                                            if (continuation.isActive) continuation.resume(null)
-                                        }
-                                    }
+                    try {
+                        val startTime = System.currentTimeMillis()
+                        fusedClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, tokenSource.token)
+                            .addOnSuccessListener { currentLoc ->
+                                val elapsed = System.currentTimeMillis() - startTime
+                                Log.d("MapFragment", "resolveUserLocation: getCurrentLocation returned after ${elapsed}ms: $currentLoc")
+                                if (currentLoc != null && continuation.isActive) {
+                                    val result = LatLng(currentLoc.latitude, currentLoc.longitude)
+                                    latestUserLocation = result
+                                    Log.d("MapFragment", "resolveUserLocation: Got current location: $result")
+                                    continuation.resume(result)
+                                } else if (continuation.isActive) {
+                                    Log.d("MapFragment", "resolveUserLocation: getCurrentLocation returned null")
+                                    continuation.resume(null)
+                                }
                             }
-                        }
-                        .addOnFailureListener { e ->
-                            Log.d("MapFragment", "resolveUserLocation: getCurrentLocation failed: ${e.message}")
-                            if (!resumed) {
-                                resumed = true
+                            .addOnFailureListener { e ->
+                                Log.d("MapFragment", "resolveUserLocation: getCurrentLocation failed: ${e.message}")
                                 if (continuation.isActive) continuation.resume(null)
                             }
-                        }
-                } catch (e: SecurityException) {
-                    Log.e("MapFragment", "resolveUserLocation: SecurityException: ${e.message}")
-                    if (!resumed) {
-                        resumed = true
+                    } catch (e: Exception) {
+                        Log.e("MapFragment", "resolveUserLocation: Exception in getCurrentLocation: ${e.message}")
                         if (continuation.isActive) continuation.resume(null)
                     }
                 }
+            }.also { result ->
+                if (result == null) {
+                    Log.w("MapFragment", "resolveUserLocation: Timed out getting current location")
+                }
             }
-        }.also { result ->
-            if (result == null) {
-                Log.w("MapFragment", "resolveUserLocation: Timed out or failed, returning null")
-            }
+        } catch (e: Exception) {
+            Log.e("MapFragment", "resolveUserLocation: Outer exception: ${e.message}", e)
+            null
         }
     }
 
