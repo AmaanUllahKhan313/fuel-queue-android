@@ -259,10 +259,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             startMapLocationUpdates()
         }
 
-        // Auto-refresh every 40 seconds (reduced from 30s to avoid ANR)
+        // Auto-refresh every 60 seconds to avoid ANR (increased from 40s)
         refreshJob = lifecycleScope.launch {
             while (isActive) {
-                delay(40_000)
+                delay(60_000)
                 if (!isLoadingStations) {
                     loadStations()
                 }

@@ -111,10 +111,10 @@ class StationListFragment : Fragment() {
         if (hasLocationPermission()) {
             startListLocationUpdates()
         }
-        // Auto-refresh every 40 seconds to keep crowd data current (reduced from 25s to avoid ANR)
+        // Auto-refresh every 60 seconds to avoid ANR (increased from 40s)
         refreshJob = lifecycleScope.launch {
             while (isActive) {
-                delay(40_000)
+                delay(60_000)
                 if (!isLoadingStations) {
                     loadStations()
                 }
@@ -160,9 +160,8 @@ class StationListFragment : Fragment() {
                 val response = RetrofitClient.api.getNearbyStations(queryLat, queryLng, 15000.0)
                 if (response.isSuccessful) {
                     val baseStations = response.body() ?: emptyList()
-                    val liveStations = enrichWithLiveCrowd(baseStations)
                     // Sort by distance: nearest first, farthest last
-                    val sortedStations = liveStations.sortedBy { it.distanceMeters }
+                    val sortedStations = baseStations.sortedBy { it.distanceMeters }
                     // Submit fresh copies so RecyclerView always rebinds changed fields.
                     adapter.submitList(sortedStations.map { it.copy() })
                     binding.tvEmpty.visibility = if (sortedStations.isEmpty()) View.VISIBLE else View.GONE
@@ -179,28 +178,6 @@ class StationListFragment : Fragment() {
         }
     }
 
-    private suspend fun enrichWithLiveCrowd(stations: List<Station>): List<Station> = coroutineScope {
-        stations.map { station ->
-            async {
-                try {
-                    val crowdResponse = RetrofitClient.api.getCrowdStatus(station.stationId)
-                    val crowd = crowdResponse.body()
-                    if (crowdResponse.isSuccessful && crowd != null) {
-                        station.copy(
-                            activeUsers = crowd.activeUsers,
-                            estimatedWaitMinutes = crowd.estimatedWaitMinutes,
-                            crowdLevel = crowd.crowdLevel.uppercase(Locale.US),
-                            updatedAt = crowd.updatedAt
-                        )
-                    } else {
-                        station
-                    }
-                } catch (_: Exception) {
-                    station
-                }
-            }
-        }.awaitAll()
-    }
 
     @SuppressLint("MissingPermission")
     private suspend fun resolveUserLocation(): QueryLocation? {

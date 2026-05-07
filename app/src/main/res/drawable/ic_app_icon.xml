@@ -5,105 +5,75 @@
     android:viewportWidth="192"
     android:viewportHeight="192">
 
-    <!-- Background circle -->
+    <!-- Main background - green -->
     <path
-        android:pathData="M96,12 C142.627,12 180,49.373 180,96 C180,142.627 142.627,180 96,180 C49.373,180 12,142.627 12,96 C12,49.373 49.373,12 96,12 Z"
-        android:fillColor="#2196F3" />
+        android:pathData="M20,20 Q10,10 20,10 L172,10 Q182,10 182,20 L182,172 Q182,182 172,182 L20,182 Q10,182 10,172 L10,20 Z"
+        android:fillColor="#27A856" />
 
-    <!-- Decorative circle border -->
+    <!-- Pump body - left side -->
     <path
-        android:pathData="M96,12 C142.627,12 180,49.373 180,96 C180,142.627 142.627,180 96,180 C49.373,180 12,142.627 12,96 C12,49.373 49.373,12 96,12 Z"
-        android:strokeColor="#1976D2"
-        android:strokeWidth="3"
-        android:fillColor="@android:color/transparent" />
-
-    <!-- CNG Pump nozzle -->
-    <path
-        android:pathData="M 60 80 L 70 75 L 70 90 Z"
-        android:fillColor="#FFD700" />
-
-    <!-- Pump hose - curved line -->
-    <path
-        android:pathData="M 70 82 Q 85 60 105 65"
-        android:strokeColor="#FF9800"
-        android:strokeWidth="8"
-        android:strokeLineCap="round"
-        android:fillColor="@android:color/transparent" />
-
-    <!-- Pump station body -->
-    <path
-        android:pathData="M 99 60 L 130 60 Q 131 60 131 61 L 131 120 Q 131 121 130 121 L 99 121 Q 98 121 98 120 L 98 61 Q 98 60 99 60 Z"
-        android:fillColor="#FF9800" />
-
-    <!-- Pump display screen -->
-    <path
-        android:pathData="M 102 65 L 128 65 Q 129 65 129 66 L 129 80 Q 129 81 128 81 L 102 81 Q 101 81 101 80 L 101 66 Q 101 65 102 65 Z"
-        android:fillColor="#000000" />
-
-    <!-- Display indicator dot 1 -->
-    <path
-        android:pathData="M 107 72 L 108 72 L 108 73 L 107 73 Z"
-        android:fillColor="#00FF00" />
-
-    <!-- Display indicator dot 2 -->
-    <path
-        android:pathData="M 113 72 L 114 72 L 114 73 L 113 73 Z"
-        android:fillColor="#00FF00" />
-
-    <!-- Display indicator dot 3 -->
-    <path
-        android:pathData="M 119 72 L 120 72 L 120 73 L 119 73 Z"
-        android:fillColor="#00FF00" />
-
-    <!-- Pump button 1 -->
-    <path
-        android:pathData="M 103 85 L 107 85 L 107 89 L 103 89 Z"
+        android:pathData="M 40 50 L 110 50 Q 115 50 115 55 L 115 160 Q 115 165 110 165 L 40 165 Q 35 165 35 160 L 35 55 Q 35 50 40 50 Z"
         android:fillColor="#FFFFFF" />
 
-    <!-- Pump button 2 -->
+    <!-- CNG text area background -->
     <path
-        android:pathData="M 118 85 L 122 85 L 122 89 L 118 89 Z"
+        android:pathData="M 45 70 L 105 70 Q 110 70 110 75 L 110 120 Q 110 125 105 125 L 45 125 Q 40 125 40 120 L 40 75 Q 40 70 45 70 Z"
+        android:fillColor="#27A856" />
+
+    <!-- C letter -->
+    <path
+        android:pathData="M 50 80 L 65 80 L 65 85 L 55 85 L 55 110 L 65 110 L 65 115 L 50 115 Z"
         android:fillColor="#FFFFFF" />
 
-    <!-- Tank base -->
+    <!-- N letter -->
     <path
-        android:pathData="M 102 125 L 128 125 Q 129 125 129 126 L 129 145 Q 129 146 128 146 L 102 146 Q 101 146 101 145 L 101 126 Q 101 125 102 125 Z"
-        android:fillColor="#1565C0" />
+        android:pathData="M 70 80 L 75 80 L 75 110 L 85 80 L 90 80 L 90 115 L 85 115 L 85 90 L 75 115 L 70 115 Z"
+        android:fillColor="#FFFFFF" />
 
-    <!-- Gas level indicator line 1 -->
+    <!-- G letter -->
     <path
-        android:pathData="M 105 130 L 124 130 L 124 132 L 105 132 Z"
-        android:fillColor="#4CAF50" />
+        android:pathData="M 100 115 L 95 115 Q 90 115 90 110 L 90 85 Q 90 80 95 80 L 105 80 L 105 85 L 95 85 L 95 100 L 105 100 L 105 105 L 100 105 L 100 115 Z"
+        android:fillColor="#FFFFFF" />
 
-    <!-- Gas level indicator line 2 -->
+    <!-- Pump nozzle handle - right side -->
     <path
-        android:pathData="M 105 135 L 124 135 L 124 137 L 105 137 Z"
-        android:fillColor="#4CAF50" />
+        android:pathData="M 125 60 L 150 60 Q 155 60 155 65 L 155 95 Q 155 100 150 100 L 125 100 Q 120 100 120 95 L 120 65 Q 120 60 125 60 Z"
+        android:fillColor="#FFFFFF" />
 
-    <!-- Gas level indicator line 3 -->
+    <!-- Nozzle tip -->
     <path
-        android:pathData="M 105 140 L 124 140 L 124 142 L 105 142 Z"
-        android:fillColor="#FFC107" />
+        android:pathData="M 155 75 L 175 75 L 175 85 L 155 85 Z"
+        android:fillColor="#FFFFFF" />
 
-    <!-- Connection pipe -->
+    <!-- Pump connection hose -->
     <path
-        android:pathData="M 110 120 L 118 120 L 118 125 L 110 125 Z"
-        android:fillColor="#424242" />
+        android:pathData="M 125 100 L 145 100 L 145 130 L 125 130 Z"
+        android:fillColor="#FFFFFF" />
 
-    <!-- Decorative star 1 -->
+    <!-- Detail separation line -->
     <path
-        android:pathData="M 50 40 L 52 46 L 58 46 L 53 50 L 55 56 L 50 52 L 45 56 L 47 50 L 42 46 L 48 46 Z"
-        android:fillColor="#FFD700" />
+        android:pathData="M 40 130 L 110 130"
+        android:strokeColor="#27A856"
+        android:strokeWidth="2"
+        android:fillColor="@android:color/transparent" />
 
-    <!-- Decorative star 2 -->
+    <!-- Bottom info panel -->
     <path
-        android:pathData="M 140 35 L 141 39 L 145 39 L 142 42 L 143 46 L 140 43 L 137 46 L 138 42 L 135 39 L 139 39 Z"
-        android:fillColor="#FFD700" />
+        android:pathData="M 45 138 L 105 138 L 105 158 L 45 158 Z"
+        android:fillColor="#F0F0F0" />
 
-    <!-- Decorative star 3 -->
+    <!-- Info line 1 -->
     <path
-        android:pathData="M 145 140 L 146 144 L 150 144 L 147 147 L 148 151 L 145 148 L 142 151 L 143 147 L 140 144 L 144 144 Z"
-        android:fillColor="#FFD700" />
+        android:pathData="M 50 144 L 100 144"
+        android:strokeColor="#27A856"
+        android:strokeWidth="2"
+        android:fillColor="@android:color/transparent" />
 
+    <!-- Info line 2 -->
+    <path
+        android:pathData="M 50 152 L 100 152"
+        android:strokeColor="#27A856"
+        android:strokeWidth="1.5"
+        android:fillColor="@android:color/transparent" />
 </vector>
 
