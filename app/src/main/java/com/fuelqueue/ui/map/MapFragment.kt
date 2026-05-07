@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -98,12 +99,15 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
+        Log.d("MapFragment", "Map is ready, permission status: ${hasLocationPermission()}")
 
         // Enable my location if permission granted
         if (hasLocationPermission()) {
+            Log.d("MapFragment", "Enabling my location layer and starting location updates")
             enableMyLocationLayer()
             startMapLocationUpdates()
         } else {
+            Log.w("MapFragment", "Location permission not granted, requesting...")
             requestLocationPermission()
         }
 
@@ -222,32 +226,34 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         return suspendCancellableCoroutine { continuation ->
             try {
-                fusedClient.lastLocation
-                    .addOnSuccessListener { lastLocation ->
-                        if (lastLocation != null) {
-                            if (continuation.isActive) {
-                                val latLng = LatLng(lastLocation.latitude, lastLocation.longitude)
+                val tokenSource = CancellationTokenSource()
+                continuation.invokeOnCancellation { tokenSource.cancel() }
+
+                // Try getCurrentLocation first with HIGH_ACCURACY for immediate result
+                fusedClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, tokenSource.token)
+                    .addOnSuccessListener { currentLocation ->
+                        if (continuation.isActive) {
+                            if (currentLocation != null) {
+                                val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
                                 latestUserLocation = latLng
                                 continuation.resume(latLng)
-                            }
-                            return@addOnSuccessListener
-                        }
-
-                        val tokenSource = CancellationTokenSource()
-                        continuation.invokeOnCancellation { tokenSource.cancel() }
-                        fusedClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, tokenSource.token)
-                            .addOnSuccessListener { currentLocation ->
-                                if (continuation.isActive) {
-                                    val latLng = currentLocation?.let { LatLng(it.latitude, it.longitude) }
-                                    if (latLng != null) {
-                                        latestUserLocation = latLng
+                            } else {
+                                // Fallback to lastLocation if getCurrentLocation returns null
+                                fusedClient.lastLocation
+                                    .addOnSuccessListener { lastLocation ->
+                                        if (continuation.isActive) {
+                                            val latLng = lastLocation?.let { LatLng(it.latitude, it.longitude) }
+                                            if (latLng != null) {
+                                                latestUserLocation = latLng
+                                            }
+                                            continuation.resume(latLng)
+                                        }
                                     }
-                                    continuation.resume(latLng)
-                                }
+                                    .addOnFailureListener {
+                                        if (continuation.isActive) continuation.resume(null)
+                                    }
                             }
-                            .addOnFailureListener {
-                                if (continuation.isActive) continuation.resume(null)
-                            }
+                        }
                     }
                     .addOnFailureListener {
                         if (continuation.isActive) continuation.resume(null)
@@ -287,20 +293,36 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     @SuppressLint("MissingPermission")
     private fun startMapLocationUpdates() {
         if (!hasLocationPermission()) return
-        if (locationCallback != null) return
+        if (locationCallback != null) {
+            Log.d("MapFragment", "Location updates already running")
+            return
+        }
+        
+        Log.d("MapFragment", "Starting location updates with HIGH_ACCURACY")
 
-        val request = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 10_000L)
-            .setMinUpdateIntervalMillis(5_000L)
+        val request = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 5_000L)
+            .setMinUpdateIntervalMillis(2_000L)
+            .setMaxUpdateDelayMillis(10_000L)
             .build()
 
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(result: LocationResult) {
                 val location = result.lastLocation ?: return
                 val newLocation = LatLng(location.latitude, location.longitude)
+                Log.d("MapFragment", "Received location: ${newLocation.latitude}, ${newLocation.longitude}, accuracy: ${location.accuracy}m")
+                
                 val oldLocation = latestUserLocation
                 latestUserLocation = newLocation
 
+                // Ensure my location layer is enabled once we have location data
+                if (!hasLocationPermission()) return@onLocationResult
+                if (googleMap?.isMyLocationEnabled != true) {
+                    Log.d("MapFragment", "Re-enabling my location layer now that we have location data")
+                    googleMap?.isMyLocationEnabled = true
+                }
+
                 if (!hasCenteredOnUser) {
+                    Log.d("MapFragment", "Centering camera on user location")
                     googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(newLocation, 14f))
                     hasCenteredOnUser = true
                 }
@@ -314,7 +336,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             }
         }
 
-        fusedClient.requestLocationUpdates(request, locationCallback!!, Looper.getMainLooper())
+        try {
+            fusedClient.requestLocationUpdates(request, locationCallback!!, Looper.getMainLooper())
+            Log.d("MapFragment", "Location update request sent successfully")
+        } catch (e: SecurityException) {
+            Log.e("MapFragment", "Security exception requesting location: ${e.message}")
+        }
     }
 
     private fun stopMapLocationUpdates() {
