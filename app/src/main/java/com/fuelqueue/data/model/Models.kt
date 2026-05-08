@@ -14,7 +14,7 @@ data class Station(
     val updatedAt: Long = 0L,
     val geofenceRadiusMeters: Double = 0.0,
     val active: Boolean = true,
-    val live: Boolean = false   // Live station indicator from backend
+    val isLive: Boolean = false   // Live station indicator from backend
 )
 
 data class CrowdStatus(

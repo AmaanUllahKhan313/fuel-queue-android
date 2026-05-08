@@ -106,7 +106,7 @@ class StationDetailFragment : Fragment() {
                 val response = RetrofitClient.api.getStationById(stationId)
                 if (response.isSuccessful && response.body() != null) {
                     val station = response.body()!!
-                    updateLiveIndicator(station.live)
+                    updateLiveIndicator(station.isLive)
                 }
             } catch (e: Exception) {
                 // Silent fail - live indicator is not critical
