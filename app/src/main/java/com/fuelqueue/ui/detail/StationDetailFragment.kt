@@ -36,6 +36,8 @@ class StationDetailFragment : Fragment() {
     private var stationLatitude: Double = 0.0
     private var stationLongitude: Double = 0.0
     private var stationName: String = ""
+    private var isLiveStation: Boolean = false
+
 
     private lateinit var fusedClient: FusedLocationProviderClient
 
@@ -117,6 +119,7 @@ class StationDetailFragment : Fragment() {
     }
 
     private fun updateLiveIndicator(isLive: Boolean) {
+        isLiveStation = isLive
         if (isLive) {
             binding.cardLiveIndicator.visibility = View.VISIBLE
         } else {
@@ -150,9 +153,9 @@ class StationDetailFragment : Fragment() {
     }
     
     private fun updateStockAvailableIndicator(activeUsers: Int) {
-        val isStockAvailable = activeUsers > 0
+        val isStockAvailable = isLiveStation || activeUsers > 0
         
-        if (binding.tvLiveIndicator.isVisible || isStockAvailable  ) {
+        if (isStockAvailable) {
             // Stock available - green
             binding.tvStockStatusLabel.text = "stock available"
             binding.tvStockStatusLabel.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_green_dark))
