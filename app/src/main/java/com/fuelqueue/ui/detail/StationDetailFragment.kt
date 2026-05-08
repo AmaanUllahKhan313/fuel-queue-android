@@ -106,6 +106,7 @@ class StationDetailFragment : Fragment() {
                 val response = RetrofitClient.api.getStationById(stationId)
                 if (response.isSuccessful && response.body() != null) {
                     val station = response.body()!!
+                    Log.d("StationDetail", "Station live status: ${station.live}")
                     updateLiveIndicator(station.live)
                 }
             } catch (e: Exception) {
@@ -116,10 +117,17 @@ class StationDetailFragment : Fragment() {
     }
 
     private fun updateLiveIndicator(isLive: Boolean) {
-        if (isLive) {
-            binding.cardLiveIndicator.visibility = View.VISIBLE
-        } else {
-            binding.cardLiveIndicator.visibility = View.GONE
+        Log.d("StationDetail", "updateLiveIndicator called with isLive: $isLive")
+        try {
+            if (isLive) {
+                binding.cardLiveIndicator.visibility = View.VISIBLE
+                Log.d("StationDetail", "Live indicator shown")
+            } else {
+                binding.cardLiveIndicator.visibility = View.GONE
+                Log.d("StationDetail", "Live indicator hidden")
+            }
+        } catch (e: Exception) {
+            Log.e("StationDetail", "Error updating live indicator: ${e.message}")
         }
     }
 
