@@ -25,6 +25,7 @@ import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.coroutines.resume
+import androidx.core.view.isVisible
 
 class StationDetailFragment : Fragment() {
 
@@ -151,7 +152,7 @@ class StationDetailFragment : Fragment() {
     private fun updateStockAvailableIndicator(activeUsers: Int) {
         val isStockAvailable = activeUsers > 0
         
-        if (isStockAvailable) {
+        if (isStockAvailable && !binding.tvLiveIndicator.isVisible ) {
             // Stock available - green
             binding.tvStockStatusLabel.text = "stock available"
             binding.tvStockStatusLabel.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_green_dark))
