@@ -13,12 +13,14 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fuelqueue.data.api.RetrofitClient
 import com.fuelqueue.data.model.Station
 import com.fuelqueue.databinding.FragmentStationListBinding
+import com.fuelqueue.ui.shared.SharedSearchViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -51,6 +53,10 @@ class StationListFragment : Fragment() {
     private var locationCallback: LocationCallback? = null
     private var lastNearbyRefreshAt = 0L
     private var isLoadingStations = false
+    private var currentSearchRadiusMeters = 10000.0  // Current radius (10km default)
+
+    // Shared ViewModel to sync search radius with MapFragment
+    private val sharedViewModel: SharedSearchViewModel by activityViewModels()
 
     private val defaultLat = 18.6298
     private val defaultLng = 73.7997
@@ -103,6 +109,18 @@ class StationListFragment : Fragment() {
 
         binding.swipeRefresh.setOnRefreshListener { loadStations() }
 
+        // Listen for search radius changes from MapFragment
+        lifecycleScope.launch {
+            sharedViewModel.searchRadiusMeters.collect { newRadius ->
+                if (newRadius != currentSearchRadiusMeters) {
+                    android.util.Log.d("StationListFragment", "Search radius changed: ${currentSearchRadiusMeters}m → ${newRadius}m")
+                    currentSearchRadiusMeters = newRadius
+                    // Refresh list with new radius
+                    loadStations()
+                }
+            }
+        }
+
         loadStations()
     }
 
@@ -144,7 +162,7 @@ class StationListFragment : Fragment() {
                 val queryLng = userLocation?.longitude ?: defaultLng
 
                 binding.tvHeaderSubtitle.text = if (userLocation != null) {
-                    "Using your current location • within 15 km"
+                    "Using your current location • within ${(currentSearchRadiusMeters / 1000).toInt()} km"
                 } else {
                     if (!warnedLocationFallback) {
                         warnedLocationFallback = true
@@ -154,17 +172,27 @@ class StationListFragment : Fragment() {
                             Toast.LENGTH_LONG
                         ).show()
                     }
-                    "Location unavailable • showing Pimpri-Chinchwad within 15 km"
+                    "Location unavailable • showing Pimpri-Chinchwad within ${(currentSearchRadiusMeters / 1000).toInt()} km"
                 }
 
-                val response = RetrofitClient.api.getNearbyStations(queryLat, queryLng, 15000.0)
+                val response = RetrofitClient.api.getNearbyStations(queryLat, queryLng, currentSearchRadiusMeters)
                 if (response.isSuccessful) {
                     val baseStations = response.body() ?: emptyList()
+                    // Filter to only include stations within current search radius
+                    val filteredStations = baseStations.filter { it.distanceMeters <= currentSearchRadiusMeters }
                     // Sort by distance: nearest first, farthest last
-                    val sortedStations = baseStations.sortedBy { it.distanceMeters }
+                    val sortedStations = filteredStations.sortedBy { it.distanceMeters }
                     // Submit fresh copies so RecyclerView always rebinds changed fields.
                     adapter.submitList(sortedStations.map { it.copy() })
                     binding.tvEmpty.visibility = if (sortedStations.isEmpty()) View.VISIBLE else View.GONE
+                    
+                    // Log filtering info
+                    if (baseStations.size != sortedStations.size) {
+                        android.util.Log.d(
+                            "StationListFragment",
+                            "Filtered stations: ${baseStations.size} → ${sortedStations.size} within ${currentSearchRadiusMeters}m"
+                        )
+                    }
                 } else {
                     Toast.makeText(requireContext(), "Failed to load stations", Toast.LENGTH_SHORT).show()
                 }

@@ -61,18 +61,20 @@ class StationDetailFragment : Fragment() {
             return
         }
 
-        binding.btnRefresh.setOnClickListener { loadCrowdStatus() }
+        binding.btnRefresh.setOnClickListener { loadCrowdStatus(fetchLiveStatus = true) }
         binding.btnGetDirections.setOnClickListener { openDirections() }
-        loadCrowdStatus()
+        loadCrowdStatus(fetchLiveStatus = true)  // Fetch live status on initial load
     }
 
     override fun onResume() {
         super.onResume()
-        // Auto-refresh every 15 seconds
+        // Auto-refresh every 60 seconds (increased from 15s to prevent ANR)
+        // Only refreshes crowd status, live status fetched only on initial load
         refreshJob = lifecycleScope.launch {
             while (isActive) {
-                delay(15_000)
-                loadCrowdStatus()
+                delay(60_000)
+                Log.d("StationDetail", "Auto-refresh triggered (60s interval)")
+                loadCrowdStatus(fetchLiveStatus = false) // Don't fetch live status on refresh
             }
         }
     }
@@ -82,7 +84,7 @@ class StationDetailFragment : Fragment() {
         refreshJob?.cancel()
     }
 
-    private fun loadCrowdStatus() {
+    private fun loadCrowdStatus(fetchLiveStatus: Boolean = true) {
         binding.progressBar.visibility = View.VISIBLE
 
         lifecycleScope.launch {
@@ -94,8 +96,11 @@ class StationDetailFragment : Fragment() {
                     Toast.makeText(requireContext(), "Failed to load crowd data", Toast.LENGTH_SHORT).show()
                 }
 
-                // Also fetch station details to get live status
-                fetchStationDetailsForLiveStatus()
+                // Only fetch live status on initial load or if explicitly requested
+                // Skip on auto-refresh to reduce API call frequency and prevent ANR
+                if (fetchLiveStatus) {
+                    fetchStationDetailsForLiveStatus()
+                }
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Network error: ${e.message}", Toast.LENGTH_SHORT).show()
             } finally {

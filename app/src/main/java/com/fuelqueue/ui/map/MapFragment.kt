@@ -14,12 +14,14 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.fuelqueue.R
 import com.fuelqueue.data.api.RetrofitClient
 import com.fuelqueue.data.model.Station
 import com.fuelqueue.databinding.FragmentMapBinding
+import com.fuelqueue.ui.shared.SharedSearchViewModel
 import com.fuelqueue.utils.CrowdUtils
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
@@ -50,6 +52,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private var locationCallback: LocationCallback? = null
     private var lastNearbyRefreshAt = 0L
     private var isLoadingStations = false
+    private var currentSearchRadiusMeters = 15000.0  // Current radius (15km default)
+    private var lastMapZoomLevel = 13f  // Track zoom to detect changes
+
+    // Shared ViewModel to sync search radius with StationListFragment
+    private val sharedViewModel: SharedSearchViewModel by activityViewModels()
 
     // Default center: Pimpri-Chinchwad, Pune
     private val defaultLat = 18.6298
@@ -121,8 +128,14 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         // Initial fallback camera until user location resolves.
         Log.d("MapFragment", "onMapReady: Setting initial camera to fallback location: $defaultLat, $defaultLng")
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(
-            LatLng(defaultLat, defaultLng), 13f
+            LatLng(defaultLat, defaultLng), 14f
         ))
+
+        // Initialize search radius based on initial zoom level (14f = 10km)
+        currentSearchRadiusMeters = calculateRadiusByZoomLevel(14f)
+        lastMapZoomLevel = 14f
+        sharedViewModel.updateSearchRadius(currentSearchRadiusMeters)
+        Log.d("MapFragment", "onMapReady: Initialized search radius to ${currentSearchRadiusMeters}m")
 
         // Tap marker → open detail
         map.setOnMarkerClickListener { marker ->
@@ -131,6 +144,29 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             val action = MapFragmentDirections.actionMapToDetail(stationId)
             findNavController().navigate(action)
             true
+        }
+
+        // ── Detect zoom level changes to dynamically load nearby stations ──
+        map.setOnCameraMoveListener {
+            val currentZoom = map.cameraPosition.zoom
+            val zoomChanged = kotlin.math.abs(currentZoom - lastMapZoomLevel) >= 1.0f
+
+            if (zoomChanged) {
+                lastMapZoomLevel = currentZoom
+                val newRadius = calculateRadiusByZoomLevel(currentZoom)
+
+                if (newRadius != currentSearchRadiusMeters) {
+                    Log.d("MapFragment", "Zoom changed: $currentZoom → Radius: ${newRadius}m")
+                    currentSearchRadiusMeters = newRadius
+                    // Update shared ViewModel so StationListFragment can access the new radius
+                    sharedViewModel.updateSearchRadius(currentSearchRadiusMeters)
+
+                    // Reload stations with new radius
+                    if (!isLoadingStations) {
+                        loadStations(forceRecenter = false)
+                    }
+                }
+            }
         }
 
         // Enable my location if permission granted
@@ -187,13 +223,23 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     hasCenteredOnUser = true
                 }
 
-                Log.d("MapFragment", "loadStations: Fetching nearby stations at ${query.latitude}, ${query.longitude}")
-                val response = RetrofitClient.api.getNearbyStations(query.latitude, query.longitude, 15000.0)
+                Log.d("MapFragment", "loadStations: Fetching nearby stations at ${query.latitude}, ${query.longitude} with radius ${currentSearchRadiusMeters}m")
+                val response = RetrofitClient.api.getNearbyStations(query.latitude, query.longitude, currentSearchRadiusMeters)
                 if (response.isSuccessful) {
                     val stations = response.body()
                     Log.d("MapFragment", "loadStations: Got ${stations?.size ?: 0} stations")
-                    // Sort stations by distance: nearest first, farthest last
-                    stations?.let { updateMarkers(it.sortedBy { station -> station.distanceMeters }) }
+                    // Filter to only include stations within current search radius and sort by distance
+                    stations?.let {
+                        val filteredStations = it.filter { station -> station.distanceMeters <= currentSearchRadiusMeters }
+                        val sortedStations = filteredStations.sortedBy { station -> station.distanceMeters }
+
+                        // Log filtering info
+                        if (it.size != sortedStations.size) {
+                            Log.d("MapFragment", "Filtered stations: ${it.size} → ${sortedStations.size} within ${currentSearchRadiusMeters}m")
+                        }
+
+                        updateMarkers(sortedStations)
+                    }
                 } else {
                     Log.e("MapFragment", "loadStations: API error ${response.code()}")
                     Toast.makeText(requireContext(), "Failed to load stations", Toast.LENGTH_SHORT).show()
@@ -462,6 +508,33 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val results = FloatArray(1)
         Location.distanceBetween(from.latitude, from.longitude, to.latitude, to.longitude, results)
         return results[0] >= thresholdMeters
+    }
+
+    /**
+     * Calculate search radius based on map zoom level
+     * 
+     * Zoom levels and corresponding radius:
+     * - Zoom 10:  30km  (very zoomed out)
+     * - Zoom 12:  20km  (zoomed out)
+     * - Zoom 13:  15km  (zoomed out)
+     * - Zoom 14:  10km  (default view)
+     * - Zoom 15:  8km   (neighborhood view)
+     * - Zoom 16:  5km   (street view)
+     * - Zoom 17:  3km   (detailed view)
+     * - Zoom 18:  1km   (very detailed view)
+     */
+    private fun calculateRadiusByZoomLevel(zoomLevel: Float): Double {
+        return when {
+            zoomLevel <= 10f -> 30000.0    // 30km - Very zoomed out
+            zoomLevel <= 11f -> 25000.0    // 25km
+            zoomLevel <= 12f -> 20000.0    // 20km - Zoomed out
+            zoomLevel <= 13f -> 15000.0    // 15km - Zoomed out
+            zoomLevel <= 14f -> 10000.0    // 10km - Default
+            zoomLevel <= 15f -> 8000.0     // 8km  - Neighborhood
+            zoomLevel <= 16f -> 5000.0     // 5km  - Street level
+            zoomLevel <= 17f -> 3000.0     // 3km  - Detailed
+            else -> 1000.0                 // 1km  - Very detailed
+        }
     }
 
     override fun onDestroyView() {

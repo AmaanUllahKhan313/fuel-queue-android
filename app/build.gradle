@@ -19,7 +19,7 @@ android {
         manifestPlaceholders = [MAPS_API_KEY: "AIzaSyBLIWkHouRnuNK-nvKFdld1eINL6ek2a9Y"]
 
         // Backend base URL — use 10.0.2.2 for Android emulator → localhost
-        buildConfigField "String", "BASE_URL", "\"https://fuel-queue-backend-production.up.railway.app/\""
+        buildConfigField "String", "BASE_URL", "\"http://10.0.2.2:8080/\""
     }
 
     buildTypes {
