@@ -37,6 +37,7 @@ class StationDetailFragment : Fragment() {
     private var stationLongitude: Double = 0.0
     private var stationName: String = ""
     private var isLiveStation: Boolean = false
+    private var lastActiveUsers: Int = 0  // Cache for using when live status updates
 
 
     private lateinit var fusedClient: FusedLocationProviderClient
@@ -106,24 +107,33 @@ class StationDetailFragment : Fragment() {
     private fun fetchStationDetailsForLiveStatus() {
         lifecycleScope.launch {
             try {
+                Log.d("StationDetail", "→ Fetching station live status...")
                 val response = RetrofitClient.api.getStationById(stationId)
                 if (response.isSuccessful && response.body() != null) {
                     val station = response.body()!!
+                    Log.d("StationDetail", "← Station received: isLive=${station.isLive}")
                     updateLiveIndicator(station.isLive)
+                    
+                    // KEY: Update stock indicator immediately with the live status
+                    // This ensures green "stock available" shows when isLive=true
+                    updateStockAvailableIndicator(lastActiveUsers)
                 }
             } catch (e: Exception) {
-                // Silent fail - live indicator is not critical
-                Log.d("StationDetail", "Failed to fetch station details for live status: ${e.message}")
+                Log.d("StationDetail", "Failed to fetch live status: ${e.message}")
             }
         }
     }
 
     private fun updateLiveIndicator(isLive: Boolean) {
         isLiveStation = isLive
+        Log.d("StationDetail", "LIVE STATUS UPDATED: isLiveStation=$isLiveStation")
+
         if (isLive) {
             binding.cardLiveIndicator.visibility = View.VISIBLE
+            Log.d("StationDetail", "✓ LIVE indicator visible")
         } else {
             binding.cardLiveIndicator.visibility = View.GONE
+            Log.d("StationDetail", "✗ LIVE indicator hidden")
         }
     }
 
@@ -148,29 +158,37 @@ class StationDetailFragment : Fragment() {
         val progress = minOf(status.activeUsers * 10, 100)
         binding.crowdProgressBar.progress = progress
         
+        // Cache active users for when live status arrives later
+        lastActiveUsers = status.activeUsers
+
         // Update stock available indicator
         updateStockAvailableIndicator(status.activeUsers)
     }
     
     private fun updateStockAvailableIndicator(activeUsers: Int) {
+        // Logic: Stock is available if:
+        // 1. Station is LIVE (highest priority - always show available)
+        // 2. OR there are active users (vehicles) currently at station
         val isStockAvailable = isLiveStation || activeUsers > 0
-        
+
+        Log.d("StationDetail", "STOCK: isLive=$isLiveStation, activeUsers=$activeUsers → available=$isStockAvailable")
+
         if (isStockAvailable) {
-            // Stock available - green
+            // Stock IS available - show GREEN indicator
             binding.tvStockStatusLabel.text = "stock available"
             binding.tvStockStatusLabel.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_green_dark))
             binding.tvStockIndicatorEmoji.text = "🟢"
-            // Update background to green
             val greenDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.stock_available_background)
             binding.stockAvailableIndicator.background = greenDrawable
+            Log.d("StationDetail", "✓ SHOW: stock available (GREEN)")
         } else {
-            // Stock not available - red
+            // Stock NOT available - show RED indicator
             binding.tvStockStatusLabel.text = "stock not available"
             binding.tvStockStatusLabel.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark))
             binding.tvStockIndicatorEmoji.text = "🔴"
-            // Update background to red
             val redDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.stock_not_available_background)
             binding.stockAvailableIndicator.background = redDrawable
+            Log.d("StationDetail", "✗ SHOW: stock not available (RED)")
         }
     }
 
