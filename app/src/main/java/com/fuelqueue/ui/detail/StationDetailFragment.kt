@@ -152,7 +152,7 @@ class StationDetailFragment : Fragment() {
     private fun updateStockAvailableIndicator(activeUsers: Int) {
         val isStockAvailable = activeUsers > 0
         
-        if (isStockAvailable && !binding.tvLiveIndicator.isVisible ) {
+        if (binding.tvLiveIndicator.isVisible || isStockAvailable  ) {
             // Stock available - green
             binding.tvStockStatusLabel.text = "stock available"
             binding.tvStockStatusLabel.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_green_dark))
