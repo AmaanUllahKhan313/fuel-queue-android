@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="8dp">
 
         <!-- Station name with Get Directions button -->
         <LinearLayout
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="6dp">
 
             <TextView
                 android:id="@+id/tv_station_name"
@@ -26,23 +26,23 @@
                 android:layout_weight="1"
                 android:text="Station Name"
                 android:textColor="@color/text_primary"
-                android:textSize="22sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <!-- Get Directions button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_get_directions"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="36dp"
                 android:text="📍 Directions"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="13sp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                app:cornerRadius="20dp"
+                android:textSize="11sp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                app:cornerRadius="16dp"
                 app:backgroundTint="@color/colorPrimary"
-                android:layout_marginStart="12dp" />
+                android:layout_marginStart="8dp" />
         </LinearLayout>
 
         <!-- Main crowd card -->
@@ -50,45 +50,45 @@
             android:id="@+id/card_crowd_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="8dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
             app:cardBackgroundColor="@color/colorPrimary">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="28dp">
+                android:padding="14dp">
 
                 <TextView
                     android:id="@+id/tv_crowd_emoji"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="🟢"
-                    android:textSize="64sp" />
+                    android:textSize="48sp" />
 
                 <TextView
                     android:id="@+id/tv_crowd_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="6dp"
                     android:text="QUIET — Go now!"
                     android:textColor="#FFFFFF"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_advice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="4dp"
                     android:gravity="center"
+                    android:lineSpacingExtra="2dp"
                     android:text="Great time to fill up!"
                     android:textColor="#E8F0FF"
-                    android:textSize="15sp"
-                    android:lineSpacingExtra="2dp" />
+                    android:textSize="13sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -97,7 +97,7 @@
             android:id="@+id/card_queue_alert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="10dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="4dp"
             android:background="#FFEBEE"
@@ -156,9 +156,9 @@
             android:id="@+id/card_stock_available"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
+            android:layout_marginBottom="6dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp"
             android:background="#E8F5E9"
             android:visibility="gone">
 
@@ -167,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:padding="14dp">
+                android:padding="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -214,16 +214,16 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="4dp"
+            android:layout_marginBottom="6dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
             app:cardBackgroundColor="@color/surface">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="8dp">
 
                 <!-- Station Details header with live indicator -->
                 <LinearLayout
@@ -231,7 +231,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="12dp">
+                    android:layout_marginBottom="6dp">
 
                     <TextView
                         android:layout_width="0dp"
@@ -289,17 +289,17 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="8dp"
                     android:background="@drawable/stock_available_background"
-                    android:padding="12dp">
+                    android:padding="6dp">
 
                     <TextView
                         android:id="@+id/tv_stock_emoji"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="📦"
-                        android:textSize="28sp"
-                        android:layout_marginEnd="12dp" />
+                        android:textSize="20sp"
+                        android:layout_marginEnd="8dp" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -313,8 +313,8 @@
                             android:layout_height="wrap_content"
                             android:text="Vehicles waiting"
                             android:textStyle="bold"
-                            android:textSize="14sp"
-                            android:layout_marginTop="2dp" />
+                            android:textSize="12sp"
+                            android:layout_marginTop="1dp" />
                     </LinearLayout>
 
                     <TextView
@@ -322,8 +322,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="🟢"
-                        android:textSize="24sp"
-                        android:layout_marginStart="12dp" />
+                        android:textSize="18sp"
+                        android:layout_marginStart="8dp" />
                 </LinearLayout>
 
                 <!-- Pumps available -->
@@ -332,19 +332,19 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="6dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="CNG"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
                         android:textStyle="bold"
                         android:textColor="@color/white"
                         android:background="@drawable/cng_small_logo_background"
-                        android:padding="8dp"
+                        android:padding="6dp"
                         android:gravity="center"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="8dp" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -357,7 +357,7 @@
                             android:layout_height="wrap_content"
                             android:text="Pumps Available"
                             android:textColor="@color/text_secondary"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
 
                         <TextView
                             android:id="@+id/tv_pumps_available"
@@ -365,7 +365,7 @@
                             android:layout_height="wrap_content"
                             android:text="8 active pumps"
                             android:textColor="@color/text_primary"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -376,14 +376,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="6dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="🕐"
-                        android:textSize="24sp"
-                        android:layout_marginEnd="10dp" />
+                        android:textSize="18sp"
+                        android:layout_marginEnd="8dp" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -396,7 +396,7 @@
                             android:layout_height="wrap_content"
                             android:text="Peak Hours"
                             android:textColor="@color/text_secondary"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
 
                         <TextView
                             android:id="@+id/tv_peak_hours"
@@ -404,7 +404,7 @@
                             android:layout_height="wrap_content"
                             android:text="7-9 AM, 5-7 PM"
                             android:textColor="@color/text_primary"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -415,14 +415,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="6dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="🛢️"
-                        android:textSize="24sp"
-                        android:layout_marginEnd="10dp" />
+                        android:textSize="18sp"
+                        android:layout_marginEnd="8dp" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -435,7 +435,7 @@
                             android:layout_height="wrap_content"
                             android:text="Fuel Type"
                             android:textColor="@color/text_secondary"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
 
                         <TextView
                             android:id="@+id/tv_fuel_types"
@@ -443,7 +443,7 @@
                             android:layout_height="wrap_content"
                             android:text="CNG"
                             android:textColor="@color/text_primary"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -459,8 +459,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="🏪"
-                        android:textSize="24sp"
-                        android:layout_marginEnd="10dp" />
+                        android:textSize="18sp"
+                        android:layout_marginEnd="8dp" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -473,7 +473,7 @@
                             android:layout_height="wrap_content"
                             android:text="Amenities"
                             android:textColor="@color/text_secondary"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
 
                         <TextView
                             android:id="@+id/tv_amenities"
@@ -481,7 +481,7 @@
                             android:layout_height="wrap_content"
                             android:text="Restroom, Shop, WiFi"
                             android:textColor="@color/text_primary"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -493,16 +493,16 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="4dp"
+            android:layout_marginBottom="6dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
             app:cardBackgroundColor="@color/surface">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="8dp">
 
                 <!-- Progress bar for crowd density -->
                 <TextView
@@ -510,26 +510,26 @@
                     android:layout_height="wrap_content"
                     android:text="📊 Crowd Density"
                     android:textColor="@color/text_secondary"
-                    android:textSize="13sp"
+                    android:textSize="11sp"
                     android:textStyle="bold"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginBottom="4dp" />
 
                 <ProgressBar
                     android:id="@+id/crowd_progress_bar"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="8dp"
+                    android:layout_height="6dp"
                     android:max="100"
                     android:progress="20"
-                    android:layout_marginBottom="20dp" />
+                    android:layout_marginBottom="10dp" />
 
                 <!-- Active users - Highlighted card -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="2dp"
+                    android:layout_marginBottom="6dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="1dp"
                     android:background="#E8F5E9">
 
                     <LinearLayout
@@ -537,14 +537,14 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:padding="12dp">
+                        android:padding="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="🚗"
-                            android:textSize="28sp"
-                            android:layout_marginEnd="12dp" />
+                            android:textSize="20sp"
+                            android:layout_marginEnd="8dp" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -557,7 +557,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Vehicles at Station"
                                 android:textColor="@color/text_secondary"
-                                android:textSize="12sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/tv_active_users"
@@ -565,7 +565,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="0 vehicles"
                                 android:textColor="#1B5E20"
-                                android:textSize="20sp"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
@@ -575,8 +575,8 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="2dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="1dp"
                     android:background="#FFF3E0">
 
                     <LinearLayout
@@ -584,14 +584,14 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:padding="12dp">
+                        android:padding="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="⏱️"
-                            android:textSize="28sp"
-                            android:layout_marginEnd="12dp" />
+                            android:textSize="20sp"
+                            android:layout_marginEnd="8dp" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -604,7 +604,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Estimated Wait Time"
                                 android:textColor="@color/text_secondary"
-                                android:textSize="12sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/tv_wait_time"
@@ -612,7 +612,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="~0 min"
                                 android:textColor="#E65100"
-                                android:textSize="20sp"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
@@ -625,33 +625,33 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="4dp"
+            android:layout_marginBottom="6dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
             app:cardBackgroundColor="@color/surface">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="🚙 Queue Status"
                     android:textColor="@color/text_primary"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_marginBottom="6dp" />
 
                 <!-- Stock waiting indicator -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_stock_indicator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="8dp"
+                    android:layout_marginBottom="6dp"
+                    app:cardCornerRadius="6dp"
                     app:cardElevation="1dp"
                     android:background="#FCE4EC"
                     android:visibility="gone">
@@ -661,14 +661,14 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:padding="10dp">
+                        android:padding="6dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="📦"
-                            android:textSize="22sp"
-                            android:layout_marginEnd="10dp" />
+                            android:textSize="18sp"
+                            android:layout_marginEnd="8dp" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -681,7 +681,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Stock Waiting"
                                 android:textColor="@color/text_secondary"
-                                android:textSize="12sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/tv_stock_status"
@@ -689,7 +689,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="5 vehicles waiting 3+ min"
                                 android:textColor="#C2185B"
-                                android:textSize="13sp"
+                                android:textSize="11sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
@@ -700,8 +700,8 @@
                     android:id="@+id/card_stock_available_indicator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="8dp"
+                    android:layout_marginBottom="6dp"
+                    app:cardCornerRadius="6dp"
                     app:cardElevation="1dp"
                     android:background="#F1F8E9"
                     android:visibility="gone">
@@ -711,14 +711,14 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:padding="10dp">
+                        android:padding="6dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="📦✅"
-                            android:textSize="22sp"
-                            android:layout_marginEnd="10dp" />
+                            android:textSize="18sp"
+                            android:layout_marginEnd="8dp" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -731,7 +731,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Stock Available"
                                 android:textColor="@color/text_secondary"
-                                android:textSize="12sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/tv_stock_available_status"
@@ -739,7 +739,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Good availability - Fast service"
                                 android:textColor="#558B2F"
-                                android:textSize="13sp"
+                                android:textSize="11sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
@@ -752,7 +752,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="4dp">
 
                     <!-- This will be populated with car emojis dynamically -->
                     <TextView
@@ -760,7 +760,7 @@
                         android:layout_height="wrap_content"
                         android:text="No vehicles in queue"
                         android:textColor="@color/text_secondary"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         android:gravity="center" />
                 </LinearLayout>
 
@@ -771,15 +771,15 @@
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:background="#F5F5F5"
-                    android:padding="10dp"
-                    app:cornerRadius="8dp">
+                    android:padding="6dp"
+                    app:cornerRadius="6dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="📍"
-                        android:textSize="20sp"
-                        android:layout_marginEnd="8dp" />
+                        android:textSize="16sp"
+                        android:layout_marginEnd="6dp" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -792,7 +792,7 @@
                             android:layout_height="wrap_content"
                             android:text="Current Queue Position"
                             android:textColor="@color/text_secondary"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
 
                         <TextView
                             android:id="@+id/tv_queue_position"
@@ -800,7 +800,7 @@
                             android:layout_height="wrap_content"
                             android:text="You are at position: —"
                             android:textColor="@color/text_primary"
-                            android:textSize="14sp"
+                            android:textSize="11sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -812,9 +812,9 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="4dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
             app:cardBackgroundColor="@color/surface">
 
             <LinearLayout
@@ -822,7 +822,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:padding="12dp">
+                android:padding="8dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -835,7 +835,7 @@
                         android:layout_height="wrap_content"
                         android:text="Last Updated"
                         android:textColor="@color/text_secondary"
-                        android:textSize="11sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_last_updated"
@@ -843,20 +843,20 @@
                         android:layout_height="wrap_content"
                         android:text="🕐 Just now"
                         android:textColor="@color/text_primary"
-                        android:textSize="13sp"
+                        android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_refresh"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="32dp"
                     android:text="🔄 Refresh"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    app:cornerRadius="20dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    app:cornerRadius="14dp"
                     app:backgroundTint="@color/colorAccent" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -866,19 +866,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:visibility="gone" />
 
         <!-- Info note -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:background="#F5F5F5"
-            android:padding="12dp"
+            android:padding="6dp"
             android:text="ℹ️ Crowd level is based on real GPS data from users at this station. Data refreshes every 15 seconds automatically."
             android:textColor="@color/text_secondary"
-            android:textSize="12sp" />
+            android:textSize="9sp" />
 
     </LinearLayout>
 </ScrollView>
