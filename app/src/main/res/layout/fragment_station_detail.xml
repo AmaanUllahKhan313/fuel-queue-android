@@ -13,8 +13,8 @@
 
         <!-- Station name with Get Directions button -->
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="54dp"
+            android:layout_width="376dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="6dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -39,21 +39,25 @@
                 android:id="@+id/tv_last_updated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingStart="2dp"
                 android:text="🕐 Just now"
                 android:textColor="@color/text_primary"
                 android:textSize="11sp"
                 android:textStyle="bold" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_refresh"
-                android:layout_width="wrap_content"
+                android:layout_width="114dp"
                 android:layout_height="54dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
+                android:layout_marginStart="8dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:text="🔄 Refresh"
                 android:textColor="@color/white"
+                android:textSize="11sp"
                 android:textStyle="bold"
-                app:backgroundTint="@color/colorAccent"
-                app:cornerRadius="14dp" />
+                app:backgroundTint="@color/colorPrimary"
+                app:cornerRadius="16dp" />
         </LinearLayout>
 
         <!-- Main crowd card -->
