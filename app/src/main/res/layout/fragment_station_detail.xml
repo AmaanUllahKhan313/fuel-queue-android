@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:letterSpacing="0.02"
                     android:text="Station Name"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/white"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
