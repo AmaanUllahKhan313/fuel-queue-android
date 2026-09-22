@@ -1,81 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="192dp"
-    android:height="192dp"
-    android:viewportWidth="192"
-    android:viewportHeight="192">
-
-    <!-- Main background - green -->
-    <path
-        android:pathData="M20,20 Q10,10 20,10 L172,10 Q182,10 182,20 L182,172 Q182,182 172,182 L20,182 Q10,182 10,172 L10,20 Z"
-        android:fillColor="#27A856" />
-
-    <!-- Pump body - left side -->
-    <path
-        android:pathData="M 40 50 L 110 50 Q 115 50 115 55 L 115 160 Q 115 165 110 165 L 40 165 Q 35 165 35 160 L 35 55 Q 35 50 40 50 Z"
-        android:fillColor="#FFFFFF" />
-
-    <!-- CNG text area background -->
-    <path
-        android:pathData="M 45 70 L 105 70 Q 110 70 110 75 L 110 120 Q 110 125 105 125 L 45 125 Q 40 125 40 120 L 40 75 Q 40 70 45 70 Z"
-        android:fillColor="#27A856" />
-
-    <!-- C letter -->
-    <path
-        android:pathData="M 50 80 L 65 80 L 65 85 L 55 85 L 55 110 L 65 110 L 65 115 L 50 115 Z"
-        android:fillColor="#FFFFFF" />
-
-    <!-- N letter -->
-    <path
-        android:pathData="M 70 80 L 75 80 L 75 110 L 85 80 L 90 80 L 90 115 L 85 115 L 85 90 L 75 115 L 70 115 Z"
-        android:fillColor="#FFFFFF" />
-
-    <!-- G letter -->
-    <path
-        android:pathData="M 100 115 L 95 115 Q 90 115 90 110 L 90 85 Q 90 80 95 80 L 105 80 L 105 85 L 95 85 L 95 100 L 105 100 L 105 105 L 100 105 L 100 115 Z"
-        android:fillColor="#FFFFFF" />
-
-    <!-- Pump nozzle handle - right side -->
-    <path
-        android:pathData="M 125 60 L 150 60 Q 155 60 155 65 L 155 95 Q 155 100 150 100 L 125 100 Q 120 100 120 95 L 120 65 Q 120 60 125 60 Z"
-        android:fillColor="#FFFFFF" />
-
-    <!-- Nozzle tip -->
-    <path
-        android:pathData="M 155 75 L 175 75 L 175 85 L 155 85 Z"
-        android:fillColor="#FFFFFF" />
-
-    <!-- Pump connection hose -->
-    <path
-        android:pathData="M 125 100 L 145 100 L 145 130 L 125 130 Z"
-        android:fillColor="#FFFFFF" />
-
-    <!-- Detail separation line -->
-    <path
-        android:pathData="M 40 130 L 110 130"
-        android:strokeColor="#27A856"
-        android:strokeWidth="2"
-        android:fillColor="@android:color/transparent" />
-
-    <!-- Bottom info panel -->
-    <path
-        android:pathData="M 45 138 L 105 138 L 105 158 L 45 158 Z"
-        android:fillColor="#F0F0F0" />
-
-    <!-- Info line 1 -->
-    <path
-        android:pathData="M 50 144 L 100 144"
-        android:strokeColor="#27A856"
-        android:strokeWidth="2"
-        android:fillColor="@android:color/transparent" />
-
-    <!-- Info line 2 -->
-    <path
-        android:pathData="M 50 152 L 100 152"
-        android:strokeColor="#27A856"
-        android:strokeWidth="1.5"
-        android:fillColor="@android:color/transparent" />
-</vector>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@mipmap/ic_launcher_foreground"
+        android:gravity="center"
+        android:width="65dp"
+        android:height="70dp" />
+</layer-list>
 
 
 
