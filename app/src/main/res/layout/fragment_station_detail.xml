@@ -13,36 +13,27 @@
 
         <!-- Station name with Get Directions button -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_width="129dp"
+            android:layout_height="54dp"
+            android:layout_marginBottom="6dp"
             android:gravity="center_vertical"
-            android:layout_marginBottom="6dp">
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_station_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Station Name"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold" />
 
             <!-- Get Directions button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_get_directions"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:text="📍 Directions"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="11sp"
+                android:layout_marginStart="8dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                app:cornerRadius="16dp"
+                android:text="📍 Directions"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                android:textStyle="bold"
                 app:backgroundTint="@color/colorPrimary"
-                android:layout_marginStart="8dp" />
+                app:cornerRadius="16dp" />
         </LinearLayout>
 
         <!-- Main crowd card -->
@@ -63,11 +54,16 @@
                 android:padding="14dp">
 
                 <TextView
-                    android:id="@+id/tv_crowd_emoji"
-                    android:layout_width="65dp"
-                    android:layout_height="54dp"
-                    android:text="🟢"
-                    android:textSize="48sp" />
+                    android:id="@+id/tv_station_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Station Name"
+                    android:textColor="@color/text_primary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.02" />
+
+
 
                 <TextView
                     android:id="@+id/tv_crowd_label"
@@ -210,6 +206,129 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+
+        <!-- Stats card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            app:cardBackgroundColor="@color/surface">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <!-- Progress bar for crowd density -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="📊 Crowd Density"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <!-- Active users - Highlighted card -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:background="#E8F5E9"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:text="🚗"
+                            android:textSize="20sp" />
+
+                        <LinearLayout
+                            android:layout_width="187dp"
+                            android:layout_height="28dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Vehicles at Station"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/tv_active_users"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0 vehicles"
+                                android:textColor="#1B5E20"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Wait time - Highlighted card -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFF3E0"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:text="⏱️"
+                            android:textSize="20sp" />
+
+                        <LinearLayout
+                            android:layout_width="232dp"
+                            android:layout_height="28dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Estimated Wait Time"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/tv_wait_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="~0 min"
+                                android:textColor="#E65100"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </GridLayout>
+        </androidx.cardview.widget.CardView>
         <!-- Station Details Section -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -334,20 +453,18 @@
                     android:gravity="center_vertical"
                     android:layout_marginBottom="6dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="CNG"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:background="@drawable/cng_small_logo_background"
-                        android:padding="6dp"
-                        android:gravity="center"
-                        android:layout_marginEnd="8dp" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="8dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="CNG icon"
+                        android:scaleType="centerInside"
+                        android:src="@mipmap/ic_launcher_foreground" />
+
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="239dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
@@ -386,7 +503,7 @@
                         android:layout_marginEnd="8dp" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="262dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
@@ -485,138 +602,6 @@
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Stats card -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="1dp"
-            app:cardBackgroundColor="@color/surface">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <!-- Progress bar for crowd density -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="📊 Crowd Density"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="4dp" />
-
-                <ProgressBar
-                    android:id="@+id/crowd_progress_bar"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:max="100"
-                    android:progress="20"
-                    android:layout_marginBottom="10dp" />
-
-                <!-- Active users - Highlighted card -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="6dp"
-                    app:cardCornerRadius="6dp"
-                    app:cardElevation="1dp"
-                    android:background="#E8F5E9">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:padding="8dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🚗"
-                            android:textSize="20sp"
-                            android:layout_marginEnd="8dp" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Vehicles at Station"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="10sp" />
-
-                            <TextView
-                                android:id="@+id/tv_active_users"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0 vehicles"
-                                android:textColor="#1B5E20"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Wait time - Highlighted card -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="6dp"
-                    app:cardElevation="1dp"
-                    android:background="#FFF3E0">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:padding="8dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="⏱️"
-                            android:textSize="20sp"
-                            android:layout_marginEnd="8dp" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Estimated Wait Time"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="10sp" />
-
-                            <TextView
-                                android:id="@+id/tv_wait_time"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="~0 min"
-                                android:textColor="#E65100"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -819,14 +804,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_height="81dp"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:padding="8dp">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="169dp"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -849,15 +834,15 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_refresh"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
+                    android:layout_width="115dp"
+                    android:layout_height="65dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
                     android:text="🔄 Refresh"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    app:cornerRadius="14dp"
-                    app:backgroundTint="@color/colorAccent" />
+                    app:backgroundTint="@color/colorAccent"
+                    app:cornerRadius="14dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

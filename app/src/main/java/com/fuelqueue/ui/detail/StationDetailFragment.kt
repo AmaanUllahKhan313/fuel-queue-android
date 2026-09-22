@@ -146,7 +146,6 @@ class StationDetailFragment : Fragment() {
         binding.tvStationName.text    = status.stationName
         binding.tvCrowdLabel.text     = CrowdUtils.getLabel(status.crowdLevel)
         binding.tvCrowdLabel.setTextColor(CrowdUtils.getColor(status.crowdLevel))
-        binding.tvCrowdEmoji.text     = CrowdUtils.getEmoji(status.crowdLevel)
         binding.tvActiveUsers.text    = "${status.activeUsers} vehicles currently here"
         binding.tvWaitTime.text       = "Estimated wait: ~${status.estimatedWaitMinutes} minutes"
         binding.tvAdvice.text         = CrowdUtils.getAdvice(status.crowdLevel)
