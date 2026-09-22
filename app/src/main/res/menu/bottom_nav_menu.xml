@@ -9,6 +9,6 @@
     <item
         android:id="@+id/stationListFragment"
         android:icon="@android:drawable/ic_menu_sort_by_size"
-        android:title="Stations" />
+        android:title="Nearby Stations" />
 
 </menu>

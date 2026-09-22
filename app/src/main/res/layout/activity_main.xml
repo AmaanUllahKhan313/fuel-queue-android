@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:background="@color/surface"
         app:menu="@menu/bottom_nav_menu"
-        app:itemTextColor="@color/text_secondary"
-        app:itemIconTint="@color/text_secondary" />
+        app:itemTextColor="@color/colorPrimary"
+        app:itemIconTint="@color/colorPrimary" />
 
 </LinearLayout>
