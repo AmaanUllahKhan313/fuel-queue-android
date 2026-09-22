@@ -500,7 +500,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="4 active pumps"
-                            android:textColor="@color/text_primary"
+                            android:textColor="@color/text_secondary"
                             android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -539,7 +539,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="7-9 AM, 5-7 PM"
-                            android:textColor="@color/text_primary"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -578,7 +578,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="CNG"
-                            android:textColor="@color/text_primary"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -616,7 +616,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Restroom, Shop, WiFi"
-                            android:textColor="@color/text_primary"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
