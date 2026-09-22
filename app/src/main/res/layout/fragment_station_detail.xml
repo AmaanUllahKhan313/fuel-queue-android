@@ -80,7 +80,7 @@
                     android:letterSpacing="0.02"
                     android:text="Station Name"
                     android:textColor="@color/text_primary"
-                    android:textSize="17sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
 
@@ -91,7 +91,7 @@
                     android:layout_marginTop="6dp"
                     android:text="QUIET — Go now!"
                     android:textColor="#FFFFFF"
-                    android:textSize="18sp"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -103,7 +103,7 @@
                     android:lineSpacingExtra="2dp"
                     android:text="Great time to fill up!"
                     android:textColor="#E8F0FF"
-                    android:textSize="13sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -247,8 +247,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="📊 Crowd Density"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="11sp"
+                    android:textColor="@color/text_primary"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <!-- Active users - Highlighted card -->
@@ -262,7 +262,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="8dp">
@@ -276,7 +276,7 @@
 
                         <LinearLayout
                             android:layout_width="187dp"
-                            android:layout_height="28dp"
+                            android:layout_height="45dp"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
@@ -323,7 +323,7 @@
 
                         <LinearLayout
                             android:layout_width="232dp"
-                            android:layout_height="28dp"
+                            android:layout_height="44dp"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
@@ -377,7 +377,7 @@
                         android:layout_weight="1"
                         android:text="ℹ️ Station Details"
                         android:textColor="@color/text_primary"
-                        android:textSize="16sp"
+                        android:textSize="22sp"
                         android:textStyle="bold" />
 
                     <!-- Live Station Indicator - shows on the right -->
@@ -441,7 +441,7 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="41dp"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -449,10 +449,10 @@
                             android:id="@+id/tv_stock_status_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
                             android:text="Vehicles waiting"
-                            android:textStyle="bold"
-                            android:textSize="12sp"
-                            android:layout_marginTop="1dp" />
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
                     <TextView
@@ -499,9 +499,9 @@
                             android:id="@+id/tv_pumps_available"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="8 active pumps"
+                            android:text="4 active pumps"
                             android:textColor="@color/text_primary"
-                            android:textSize="12sp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
