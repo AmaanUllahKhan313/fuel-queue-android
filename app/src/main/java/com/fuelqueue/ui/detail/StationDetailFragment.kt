@@ -160,8 +160,7 @@ class StationDetailFragment : Fragment() {
 
         // Progress bar (0–10 vehicles max)
         val progress = minOf(status.activeUsers * 10, 100)
-        binding.crowdProgressBar.progress = progress
-        
+
         // Cache active users for when live status arrives later
         lastActiveUsers = status.activeUsers
 
